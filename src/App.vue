@@ -1,10 +1,9 @@
-<template>
-  <nav class="ui menu">
-    <router-link to="/" class="item">Home</router-link>
-    <!-- <router-link to="/faq" class="item">FAQ</router-link> -->
-    <router-link to="/four" class="item">四階段</router-link>
-  </nav>
-  <router-view/>
+<template lang="pug">
+nav.ui.menu
+  router-link.item(to="/") 問答集
+  // router-link.item(to="/faq") FAQ
+  router-link.item(to="/four") 四階段
+router-view
 </template>
 
 <style>
@@ -17,7 +16,7 @@
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #42b983 !important;
 }
 
 </style>

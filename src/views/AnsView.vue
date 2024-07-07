@@ -1,27 +1,25 @@
 <template lang="pug">
-  .hello
-    vue-headful(title="自學問答 - 自學地圖", description="自學問答集")
-    section.ui.segment.container
-      router-link(to="/")
-        h1.ui.header.center.aligned
-          | {{myQ.q}}
-        i.huge.orange.users.icon(style="display:block; margin-left:auto; margin-right:auto")
-      .ui.divider
-      .ui.grid
-        .row
-          .column
-            p.description(v-for = "line in myQ.as" v-html = "highlightAndMakeBr(line, myKey)")
-        
-        .row
-          .eighteen.wide.right.aligned.column(v-show="myQ.es && myQ.es[0]")
-            .ui.divider
-            span(v-for = "(e,index) in myQ.es")
-              .ui.divider(v-show="index")
-              | 參考:&nbsp;&nbsp;
-              a(:href = "e.h" target="_blank")
-                i.globe.icon
-                | {{e.t}}
- 
+.ans
+  section.ui.segment.container
+    router-link(to="/")
+      h1.ui.header.center.aligned
+        | {{myQ.q}}
+      i.huge.orange.users.icon(style="display:block; margin-left:auto; margin-right:auto")
+    .ui.divider
+    .ui.grid
+      .row
+        .column
+          p.description(v-for = "line in myQ.as" v-html = "highlightAndMakeBr(line, myKey)")
+      
+      .row
+        .eighteen.wide.right.aligned.column(v-show="myQ.es && myQ.es[0]")
+          .ui.divider
+          span(v-for = "(e,index) in myQ.es")
+            .ui.divider(v-show="index")
+            | 參考:&nbsp;&nbsp;
+            a(:href = "e.h" target="_blank")
+              i.globe.icon
+              | {{e.t}}
 </template>
 
 <script>
@@ -81,7 +79,8 @@ export default  defineComponent({
 <style scoped>
 
 p {
-  text-align: left
+  text-align: left;
+  font-size: 16px;
 }
 
 </style>

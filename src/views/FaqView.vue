@@ -1,6 +1,5 @@
 <template lang="pug">
 .faq
-  vue-headful(title="自學問答 - 自學地圖", description="本會的自學問答集")
   section
     h1.ui.center.aligned.header 自學問答 
     h4.ui.center.aligned.header 分類：
