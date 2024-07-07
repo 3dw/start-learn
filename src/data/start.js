@@ -1,4 +1,4 @@
-exoprt const start = [
+export const start = [
   { "q" : "不上學，合法嗎？", "lev" : 0,
     "c" : "起步",          
     "as" : [

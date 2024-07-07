@@ -1,7 +1,7 @@
 <template>
   <nav class="ui menu">
     <router-link to="/" class="item">Home</router-link>
-    <router-link to="/faq" class="item">FAQ</router-link>
+    <!-- <router-link to="/faq" class="item">FAQ</router-link> -->
     <router-link to="/four" class="item">四階段</router-link>
   </nav>
   <router-view/>
