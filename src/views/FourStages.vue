@@ -143,4 +143,9 @@ img {
   max-height: 33vh;
 }
 
+p {
+  text-align: left;
+  font-size: 16px;
+}
+
 </style>
