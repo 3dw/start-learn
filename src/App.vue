@@ -1,7 +1,7 @@
 <template lang="pug">
 nav.ui.menu
-  router-link.item(to="/") 問答集
-  // router-link.item(to="/faq") FAQ
+  router-link.item(to="/") 什麼是自學
+  router-link.item(to="/faq") 問答集
   router-link.item(to="/four") 四階段
 router-view
 </template>

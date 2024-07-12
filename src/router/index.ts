@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/home',
+    path: '/',
     name: 'home',
     component: HomeView
   },
@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AnsView.vue')
   },
   {
-    path: '/',
+    path: '/faq',
     name: 'faq',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

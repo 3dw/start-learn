@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <img id="logo" alt="Logo" src="../assets/logo.png">
     <HelloWorld/>
   </div>
 </template>
@@ -16,3 +16,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+
+#logo {
+  max-width: 33vmin;
+}
+
+</style>
