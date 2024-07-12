@@ -148,4 +148,9 @@ p {
   font-size: 16px;
 }
 
+.ui.container {
+  margin-top: 20px;
+  max-width: 480px !important;
+}
+
 </style>
