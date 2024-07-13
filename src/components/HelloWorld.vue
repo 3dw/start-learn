@@ -23,19 +23,20 @@ div.hello
         .item
           .header 2.2 申請材料
           .list
-            .item 2.2.1 申請書
+            .item 2.2.1 申請書 ➡️ 參考
+              a(href="https://www.homeschool.tw/p/blog-page.html") 一週完成自學申請書
             // .item 2.2.2 成績報告
             // .item 2.2.3 課程計劃
-        .item
+        // .item
           .header 2.3 面試
           .list
             .item 2.3.1 帶家長面試
             .item 2.3.2 面試問題
         .item
-          .header 2.4 審核與補件
+          .header 2.3 審核與補件
           .list
-            .item 2.4.1 補件流程
-            .item 2.4.2 申請成功通知
+            .item 2.3.1 初審不通過 ➡️ 可申請補件
+            .item 2.3.2 初審通過 ➡️ 受到申請成功通知
     section
       h2.ui.header 3. 自學的種類
       .ui.list
@@ -116,6 +117,13 @@ div.hello
             .item 7.2.2 合作方式
 
       .ui.divider 
+      
+      h3 真人諮詢
+
+      p 請用「您居住的縣市」 + 「非學校」當關鍵字，即可查詢到教育局的相關業務單位，通常都會有聯絡電話。
+      
+      .ui.divider 
+      
 
       h3 相關連結
       .ui.vertical.large.buttons
@@ -144,8 +152,11 @@ div.hello
     margin-top: 10px;
   }
 
-  .ui.list .item, .header {
+  .ui.list .item, .header, p {
     text-align: left;
+  }
+
+  .ui.list .item, p {
     font-size: 16px;
   }
 
