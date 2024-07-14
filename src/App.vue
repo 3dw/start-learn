@@ -62,4 +62,8 @@ a, button, .clickable {
   }
 }
 
+.text-left {
+  text-align: left
+}
+
 </style>
