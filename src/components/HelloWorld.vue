@@ -1,7 +1,8 @@
 <template lang="pug">
 div.hello
   .ui.segment.container
-    h1.ui.header 自學生
+    h1.ui.header 自學
+      sub.header 正式名稱為「非學校型態實驗教育」
     section
       h2.ui.header 1. 一些關於自學生的刻板印象
       .ui.list
@@ -58,8 +59,8 @@ div.hello
         .item
           .header 4.1 成績評定
           .list
-            .item 4.1.1 成果報告
-            .item 4.1.2 評分標準
+            .item 4.1.1 成果報告 ➡️ 每學年結束時繳交
+            .item 4.1.2 評分標準 ➡️ 依自學計畫
         .item
           .header 4.2 自學課程
           .list
