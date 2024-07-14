@@ -88,7 +88,8 @@ div.hello
         .item
           .header 5.2 自學經驗的影響
           .list
-            .item 5.2.1 成熟度
+            .item 5.2.1 成熟度 ➡️ 
+              router-link(to="four") 學習自律四階段🐫
             .item 5.2.2 自我管理能力
     section
       h2.ui.header 6. 自學的挑戰🧨
@@ -116,6 +117,13 @@ div.hello
           .list
             .item 7.2.1 申請流程
             .item 7.2.2 合作方式
+
+      .ui.divider 
+      
+      h3 問答集❤️‍🩹
+
+      p 請參考 ➡️ 
+        router-link(to="faq") 自學問答集
 
       .ui.divider 
       
