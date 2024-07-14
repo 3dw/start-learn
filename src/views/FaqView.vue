@@ -24,6 +24,7 @@
             i.circular.icon(v-bind:class="cataIcon(f.c)")
             .description(v-html="highlightAndMakeBr(f.q, myKey)" v-bind:class="{orange: index % 2 == 0}")
             br
+            .small.gray.note {{ f.as[0] }}...
       a.ui.top.left.attached.ribbon.label(
         v-bind:style="{ 'background-color': cataColor(f.c) }",
         @click="myC = (!myC && f.c) || 0"
@@ -112,6 +113,13 @@ a {
 }
 .bordered.bottom {
   border-bottom: 2px solid #aaa;
+}
+
+.small.gray.note {
+  font-size: 14px;
+  color: #aaa;
+  text-align: left;
+  padding-left: 1em;
 }
 
 </style>

@@ -1,6 +1,6 @@
 <template lang="pug">
 .ans
-  section.ui.segment.container
+  #main-ans.ui.segment.container
     router-link(to="/")
       h1.ui.header.center.aligned
         | {{myQ.q}}
@@ -81,6 +81,10 @@ export default  defineComponent({
 p {
   text-align: left;
   font-size: 16px;
+}
+
+#main-ans {
+  max-width: 680px !important;
 }
 
 </style>
