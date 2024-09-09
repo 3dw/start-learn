@@ -20,7 +20,11 @@ div.hello
             .item 2.1.1 每年四月和十月
               .description 
                 a(href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0070059") 	高級中等以下教育階段非學校型態實驗教育實施條例
-                | 第六條：前條申請人應填具申請書，並檢附實驗教育計畫，至遲於每年四月三十日或十月三十一日前提出申請。
+                | 第六條：前條申請人應填具申請書，並檢附實驗教育計畫，至遲於每年
+                span.bold.text-underline 四月三十日
+                | 或
+                span.bold.text-underline 十月三十一日
+                | 前提出申請。
         .item
           .header 2.2 申請材料
           .list
@@ -59,7 +63,7 @@ div.hello
         .item
           .header 4.1 成績評定
           .list
-            .item 4.1.1 成果報告 ➡️ 每學年結束時繳交
+            .item 4.1.1 成果報告 ➡️ 每學年結束後兩個月內(即每年九月底前)
             .item 4.1.2 評分標準 ➡️ 依自學計畫
         .item
           .header 4.2 自學課程🐙
@@ -71,7 +75,8 @@ div.hello
           .list
             .item 4.3.1 政府補助
               .description 目前台灣高中職階段有政府補助
-            .item 4.3.2 線上資源
+            .item 4.3.2 
+              router-link(to="/outer") 線上資源
         .item
           .header 4.4 社交活動🤽‍♀️
           .list
@@ -124,6 +129,13 @@ div.hello
 
       p 請參考 ➡️ 
         router-link(to="faq") 自學問答集
+      
+      .ui.divider 
+      
+      h3 找夥伴👫
+      
+      p 請參考 ➡️ 
+        a(href="https://we.alearn.org.tw") 自學2.0
 
       .ui.divider 
       
@@ -131,14 +143,16 @@ div.hello
 
       p 請用「您居住的縣市」 + 「非學校」當關鍵字，即可查詢到教育局的相關業務單位，通常都會有聯絡電話。
       
+      
       .ui.divider 
       
 
       h3 相關連結🪱
       .ui.vertical.large.buttons
         a.ui.teal.button(href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0070059") 	高級中等以下教育階段非學校型態實驗教育實施條例
-        a.ui.green.button(href="https://we.alearn.org.tw") 自學2.0
-        a.ui.blue.button(href="https://galacticproject.notion.site/d7477db76ecd4ff3b453a39ba21d97ef") 自學生經驗匯流
+        // a.ui.green.button(href="https://we.alearn.org.tw") 自學2.0
+        a.ui.green.button(href="https://www.alearn.org.tw") 自主學習促進會
+        a.ui.blue.button(href="https://galacticproject.notion.site/d7477db76ecd4ff3b453a39ba21d97ef") 星河計畫：自學生經驗匯流
   </template>
   
   <script lang="ts">
@@ -167,6 +181,7 @@ div.hello
 
   .ui.list .item, p {
     font-size: 16px;
+    line-height: 1.4;
   }
 
   .description {

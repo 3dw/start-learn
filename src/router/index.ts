@@ -21,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/four',
     name: 'four',
     component: () => import(/* webpackChunkName: "about" */ '../views/FourStages.vue')
+  },
+  {
+    path: '/outer',
+    name: 'outer',
+    component: () => import(/* webpackChunkName: "about" */ '../views/OuterView.vue')
   }
 ]
 

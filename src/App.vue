@@ -1,11 +1,21 @@
 <template lang="pug">
 nav.ui.menu
-  router-link.item(to="/") 什麼是自學
-  router-link.item(to="/faq") 問答集
-  router-link.item(to="/four") 四階段
+  router-link.item(to="/")
+    i.home.icon
+    | 自學是什麼
+  router-link.item(to="/faq")
+    i.question.circle.icon
+    | 問答集
+  router-link.item(to="/four")
+    i.tasks.icon
+    | 四階段
+  router-link.item.fat-only(to="/outer")
+    i.book.icon
+    | 資源推薦
 router-view
 ad.fat-only
 </template>
+  
 
 <script>
 
@@ -64,6 +74,14 @@ a, button, .clickable {
 
 .text-left {
   text-align: left
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.bold {
+  font-weight: bolder;
 }
 
 </style>
