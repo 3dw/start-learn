@@ -14,7 +14,7 @@ nav.ui.menu
     | 資源推薦
 
 .marquee-container
-  .marquee
+  .marquee(:style="marqueeStyle", ref="marquee")
     .marquee-content
       router-link.item(
         v-for="(item, index) in faqs",
@@ -23,7 +23,7 @@ nav.ui.menu
       ) {{ parse(item.q) }}
     .marquee-content(aria-hidden="true")
       router-link.item(
-        v-for="(item, index) in start",
+        v-for="(item, index) in faqs",
         :key="index",
         :to="'/ans/' + index"
       ) {{ parse(item.q) }}
@@ -49,14 +49,43 @@ export default defineComponent({
     return {
       start,
       plan,
-      faqs: start.concat(plan).concat(support).concat(resource)
-
+      faqs: start.concat(plan).concat(support).concat(resource),
+      marqueeStyle: {
+        animationDuration: '60s' // 預設值
+      }
     }
   },
   methods: {
     parse: (s) => {
       return '您想知道' + s.replace('？', '嗎？')
+    },
+    calculateScrollDuration() {
+      this.$nextTick(() => {
+        const marquee = this.$refs.marquee;
+        if (!marquee) return;
+
+        const marqueeContent = marquee.querySelector('.marquee-content');
+        const contentWidth = marqueeContent.offsetWidth;
+        const viewportWidth = window.innerWidth;
+        
+        // 確保內容至少滾動一個完整的視窗寬度
+        const scrollDistance = Math.max(contentWidth, viewportWidth);
+        
+        // 假設我們希望內容以每秒 150 像素的速度滾動
+        const pixelsPerSecond = 150;
+        const durationInSeconds = scrollDistance / pixelsPerSecond;
+
+        // 設置動畫持續時間
+        this.marqueeStyle.animationDuration = `${durationInSeconds}s`;
+      });
     }
+  },
+  mounted() {
+    this.calculateScrollDuration();
+    window.addEventListener('resize', this.calculateScrollDuration);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.calculateScrollDuration);
   }
 })
 </script>
@@ -92,20 +121,18 @@ a, button, .clickable {
 
 .marquee {
   display: flex;
-  width: 200%;
-  animation: scroll 20s linear infinite;
+  animation: scroll linear infinite;
 }
 
 .marquee-content {
   display: flex;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: flex-start;
+  min-width: 100%;
   flex-shrink: 0;
 }
 
-
 .marquee-content a.item {
-  padding: 0 40px;
+  padding: 0 20px;
   white-space: nowrap;
   color: black !important;
 }
@@ -115,7 +142,7 @@ a, button, .clickable {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
 
