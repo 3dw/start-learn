@@ -2,6 +2,9 @@
   "name": "Start_Learning_At_Home", 
   "short_name": "Start_Learn",
   "description": "How to start learning at home",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
