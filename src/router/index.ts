@@ -23,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/FourStages.vue')
   },
   {
+    path: '/senior',
+    name: 'senior',
+    component: () => import(/* webpackChunkName: "about" */ '../views/SeniorView.vue')
+  },
+  {
     path: '/outer',
     name: 'outer',
     component: () => import(/* webpackChunkName: "about" */ '../views/OuterView.vue')
