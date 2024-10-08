@@ -2,6 +2,13 @@
   "name": "自學地圖-非學校型態實驗教育入口頁", 
   "short_name": "自學地圖",
   "description": "How to start learning at home",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#ffffff", // 新增主題顏色
+  "background_color": "#ffffff", // 新增背景顏色
+  "lang": "zh-TW", // 新增語言設定
+  "scope": "/", // 新增應用程式範圍
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
