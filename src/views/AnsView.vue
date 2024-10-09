@@ -26,6 +26,10 @@
             button(@click="goBack" class="ui blue button")
               i.chevron.left.icon
               | 回上一頁
+          .eight.wide.right.aligned.column
+            router-link.ui.orange.button(to="/feedback")
+              | 我有意見
+              i.chevron.right.icon
   </template>
   
   <script>

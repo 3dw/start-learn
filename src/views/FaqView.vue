@@ -1,6 +1,7 @@
 <template lang="pug">
 .faq
   section
+    br
     h1.ui.center.aligned.header 自學問答 
     h4.ui.center.aligned.header 分類：
       .ui.small.buttons

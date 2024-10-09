@@ -31,6 +31,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/outer',
     name: 'outer',
     component: () => import(/* webpackChunkName: "about" */ '../views/OuterView.vue')
+  },
+  {
+    path: '/feedback',
+    name: 'feedback',
+    component: () => import(/* webpackChunkName: "about" */ '../views/FeedbackView.vue')
   }
 ]
 
