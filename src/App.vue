@@ -13,7 +13,7 @@ nav.ui.menu
     i.book.icon
     | 資源推薦
 
-.marquee-container
+// .marquee-container
   .marquee(:style="marqueeStyle", ref="marquee")
     .marquee-content
       router-link.item(

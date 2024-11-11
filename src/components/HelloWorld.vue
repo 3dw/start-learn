@@ -1,5 +1,21 @@
 <template lang="pug">
 div.hello
+  //- 與AI對話
+  .ui.segment.container
+    img(id="logo" alt="Logo" src="../assets/logo.png")
+    .ui.input
+      input(
+        autofocus 
+        type="text" 
+        placeholder="與AI對話..." 
+        v-model="message"
+        @keyup.enter="sendMessage"
+      )
+      button.ui.button(@click="sendMessage") 送出
+    .result
+      p(v-if="result === '' && message !== '' && isLoading") 載入中，請稍候...
+      p(v-else-if="result !== ''") {{ parseResult(result) }}
+
   .ui.segment.container
     h1.ui.header 自學
       sub.header 正式名稱為「非學校型態實驗教育」
@@ -174,10 +190,43 @@ div.hello
   </template>
   
   <script lang="ts">
+  import axios from 'axios';
   import { defineComponent } from 'vue';
   
   export default defineComponent({
     name: 'HelloWorld',
+    data() {
+      return {
+        message: '',
+        result: '',
+        isLoading: false,
+      };
+    },
+    methods: {
+      sendMessage() {
+        this.isLoading = true;
+        this.result = '';
+        console.log(this.message);
+        if (!this.message.endsWith('？')) {
+          this.message += '？';
+        }
+        axios.get('https://members-backend.alearn13994229.workers.dev/ai/' + this.message, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }).then((response) => {
+          console.log(response);
+          this.result = response.data;
+          this.isLoading = false;
+          });
+      },
+      parseResult(result: string) {
+        if (result === '。') {
+          return '請說得詳細一點';
+        }
+        return result;
+      },
+    },
   });
   </script>
   
@@ -206,4 +255,16 @@ div.hello
     margin-top: .6em;
     font-style: italic;
   }
+
+  #logo {
+    max-width: 33vmin;
+  }
+
+  .result {
+    margin-top: 1em;
+    font-size: 16px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+  }
+
   </style>
