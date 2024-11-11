@@ -7,11 +7,11 @@ div.hello
       input(
         autofocus 
         type="text" 
-        placeholder="與AI對話..." 
+        placeholder="問AI關於自學的任何問題..." 
         v-model="message"
         @keyup.enter="sendMessage"
       )
-      button.ui.button(@click="sendMessage") 送出
+      button.ui.primary.button(@click="sendMessage") 送出
     .result
       p(v-if="result === '' && message !== '' && isLoading") 載入中，請稍候...
       p(v-else-if="result !== ''") {{ parseResult(result) }}
@@ -258,6 +258,10 @@ div.hello
 
   #logo {
     max-width: 33vmin;
+  }
+
+  .ui.input {
+    min-width: 300px;
   }
 
   .result {
