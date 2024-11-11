@@ -10,7 +10,8 @@ module.exports = defineConfig({
     workboxOptions: {
       exclude: [/\.gitkeep/],
       skipWaiting: true,
-      clientsClaim: true
-   }
+      clientsClaim: true,
+      cleanupOutdatedCaches: true
+    }
   }
 })
