@@ -3,6 +3,8 @@ div.hello
   //- 與AI對話
   .ui.segment.container
     img(id="logo" alt="Logo" src="../assets/logo.png")
+    h2.center.aligned.ui.header 自學AI
+      .center.aligned.ui.sub.header 以自學問答集為基礎，提供更即時的回答
     .ui.input
       input(
         autofocus 
@@ -261,7 +263,15 @@ div.hello
   }
 
   .ui.input {
-    min-width: 300px;
+    min-width: 320px;
+  }
+
+  input[type="text"] {
+    font-size: 1.2rem !important;
+  }
+
+  input[type="text"]:placeholder-shown {
+    font-size: 1.2rem !important;
   }
 
   .result {
