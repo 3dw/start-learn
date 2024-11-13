@@ -17,6 +17,15 @@ div.hello
     .result
       p(v-if="result === '' && message !== '' && isLoading") 載入中，請稍候...
       p(v-else-if="result !== ''") {{ parseResult(result) }}
+        br
+        br
+        | 您覺得這個回答怎麼樣呢？
+        button.ui.green.button(@click="sendFeedback('good')")
+          i.thumbs.up.icon
+          | 很棒
+        button.ui.red.button(@click="sendFeedback('bad')")
+          i.thumbs.down.icon
+          | 不佳
 
   .ui.segment.container
     h1.ui.header 自學
@@ -227,6 +236,20 @@ div.hello
           return '請說得詳細一點';
         }
         return result;
+      },
+      sendFeedback(feedback: string) {
+        console.log(feedback);
+        if (feedback === 'good') {
+          console.log('good');
+          window.alert('感謝您的回饋！');
+        } else if (feedback === 'bad') {
+          console.log('bad');
+          if (window.confirm('請告訴我們哪裡做得不好，我們會努力改進！')) {
+            this.$router.push('/feedback');
+          } else {
+            window.alert('感謝您的回饋！');
+          }
+        }
       },
     },
   });

@@ -2,8 +2,8 @@
 .hello
   #ad
     a(href="https://www.alearn.org.tw", target="_blank", rel="noopener noreferrer")
-      img.ad(src="/ad-be.jpg" alt="支持自學，發票愛心碼捐9806")
-      | 支持自學，發票愛心碼捐9806
+      img.ad(src="/ad-be.jpg" alt="本站由自主學習促進會製作")
+      | 本站由自主學習促進會製作
 </template>
 
 <script>
