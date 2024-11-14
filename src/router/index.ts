@@ -36,6 +36,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/feedback',
     name: 'feedback',
     component: () => import(/* webpackChunkName: "about" */ '../views/FeedbackView.vue')
+  },
+  {
+    path: '/embed/ai',
+    name: 'aiembed',
+    component: () => import(/* webpackChunkName: "aiembed" */ '../views/AIEmbedView.vue')
   }
 ]
 

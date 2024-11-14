@@ -1,5 +1,5 @@
 <template lang="pug">
-nav.ui.menu
+nav.ui.menu(v-if="!$route.path.startsWith('/embed')")
   router-link.item(to="/")
     i.home.icon
     | 自學是什麼
@@ -29,7 +29,7 @@ nav.ui.menu
       ) {{ parse(item.q) }}
 
 router-view
-ad.fat-only
+ad.fat-only(v-if="!$route.path.startsWith('/embed')")
 </template>
 
 <script>
