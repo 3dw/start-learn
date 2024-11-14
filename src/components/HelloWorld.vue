@@ -16,16 +16,18 @@ div.hello
       button.ui.primary.button(@click="sendMessage") 送出
     .result
       p(v-if="result === '' && message !== '' && isLoading") 載入中，請稍候...
-      p(v-else-if="result !== ''") {{ parseResult(result) }}
+      div(v-else-if="result !== ''")
+        p {{ parseResult(result) }}
         br
         br
-        | 您覺得這個回答怎麼樣呢？
-        button.ui.green.button(@click="sendFeedback('good')")
-          i.thumbs.up.icon
-          | 很棒
-        button.ui.red.button(@click="sendFeedback('bad')")
-          i.thumbs.down.icon
-          | 不佳
+        p 您覺得這個回答怎麼樣呢？
+        .ui.buttons
+          button.ui.green.button(@click="sendFeedback('good')")
+            i.thumbs.up.icon
+            | 很棒
+          button.ui.red.button(@click="sendFeedback('bad')")
+            i.thumbs.down.icon
+            | 不佳
 
   .ui.segment.container
     h1.ui.header 自學
@@ -302,6 +304,11 @@ div.hello
     font-size: 16px;
     line-height: 1.4;
     white-space: pre-wrap;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 1.4;
   }
 
   </style>
