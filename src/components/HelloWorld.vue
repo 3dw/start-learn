@@ -303,12 +303,14 @@ div.hello
     margin-top: 1em;
     font-size: 16px;
     line-height: 1.4;
+    text-align: left;
     white-space: pre-wrap;
   }
 
   p {
     font-size: 18px;
     line-height: 1.4;
+    text-align: left;
   }
 
   </style>
