@@ -28,13 +28,14 @@ nav.ui.menu(v-if="!$route.path.startsWith('/embed')")
         :to="'/ans/' + index"
       ) {{ parse(item.q) }}
 
-router-view
+router-view(:faqs="faqs")
 ad.fat-only(v-if="!$route.path.startsWith('/embed')")
 </template>
 
 <script>
 import Ad from './components/Ad-Be.vue'
 import { defineComponent } from 'vue'
+import axios from 'axios'
 
 export default defineComponent({
   name: 'AutoMap',
@@ -53,6 +54,17 @@ export default defineComponent({
     parse: (s) => {
       return '您想知道' + s.replace('？', '嗎？')
     },
+    async fetchFaqs() {
+      try {
+        const response = await axios.get('https://members-backend.alearn13994229.workers.dev/api/Faq')
+        this.faqs = response.data
+      } catch (error) {
+        console.error('獲取FAQ資料失敗:', error)
+      }
+    }
+  },
+  mounted() {
+    this.fetchFaqs()
   }
 })
 </script>

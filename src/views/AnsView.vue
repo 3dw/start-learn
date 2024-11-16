@@ -1,25 +1,24 @@
 <template lang="pug">
   .ans
-    #main-ans.ui.segment.container
-      router-link(to="/")
+    #main-ans.ui.segment.container(v-if="faqItem")
+      router-link(to="/faq")
         h1.ui.header.center.aligned
-          | {{myQ.q}}
-        i.huge.orange.users.icon(style="display:block; margin-left:auto; margin-right:auto")
+          | {{faqItem.question}}
+        i.huge.orange.icon(style="display:block; margin-left:auto; margin-right:auto", :class="cataIcon(faqItem.category)")
       .ui.divider
       .ui.grid
         .row
           .column
-            p.description(v-for = "line in myQ.as" v-html = "highlightAndMakeBr(line, myKey)")
+            p.description(v-html="highlightAndMakeBr(faqItem.answer, searchKeyword)")
         
         .row
-          .eighteen.wide.right.aligned.column(v-show="myQ.es && myQ.es[0]")
+          .eighteen.wide.right.aligned.column(v-if="parsedLinks && parsedLinks.length")
             .ui.divider
-            span(v-for = "(e,index) in myQ.es")
+            span(v-for="(link, index) in parsedLinks")
               .ui.divider(v-show="index")
-              | 參考:&nbsp;&nbsp;
-              a(:href = "e.h" target="_blank")
+              a(:href="link.h" target="_blank")
                 i.globe.icon
-                | {{e.t}}
+                | {{link.t}}
   
         .row
           .eight.wide.column.text-left
@@ -35,23 +34,35 @@
   <script>
   
   import { catagories } from '../data/catagories.js'
-  
+  import axios from 'axios'
   import { defineComponent } from 'vue';
   
   export default  defineComponent({
     name: 'AnsView',
-    props: ['myKey', 'faqs'],
+    props: {
+      faqs: {
+        type: Array,
+        required: true
+      }
+    },
     data () {
       return {
-        myQ: {q: '', as: [], es: []},
+        faqItem: null,
         handbook: {},
-        catagories: catagories,
+        catagories: catagories
       }
     },
     mounted () {
-      this.myQ = this.faqs[this.$route.params.id]
+      this.faqItem = this.faqs[this.$route.params.id]
     },
     methods: {
+      escapeHtml(text) {
+        return text
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+      },
       makeBr: function (str) {
         str = str || ''
         return str.replace(/\s/g, '<br/>').replace(/&nbsp;/g, '<br/>') || ''
@@ -61,7 +72,8 @@
         if (!search) {
           return text
         }
-        return text.replace(new RegExp(search, 'gi'), '<span class="highlightedText">$&</span>')
+        return this.escapeHtml(text)
+          .replace(new RegExp(search, 'gi'), '<span class="highlightedText">$&</span>')
       },
       cataColor: function (n) {
         return (this.catagories.filter(
@@ -75,6 +87,12 @@
       },
       goBack() {
         this.$router.go(-1)
+      },
+      parseLinks(links) {
+        return links.map(link => ({
+          h: link.h,
+          t: link.t
+        }))
       }
     }
   })

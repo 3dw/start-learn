@@ -7,7 +7,10 @@
           .field(style="max-width:150px;")
             label 類別篩選
             select.ui.dropdown(v-model="selectedCategory")
-              option(v-for="category in categories" :value="category") {{ category }}
+              option(value="全部")
+                | 全部
+              option(v-for="category in categories" :value="category.t")
+                | {{ category.t }}
           .field
             label 關鍵字篩選
             .ui.icon.input
@@ -17,27 +20,30 @@
                 placeholder="搜尋常見問題..."
               )
               i.search.icon
-      table.ui.celled.table
+      table.ui.celled.collapsing.table
         thead
           tr
             th 類別
             th 問題
-            th 回答
-            th 相關連結
+            th 操作
         tbody
-          tr(v-for="item in filteredAndSortedFaqItems" :key="item.id")
-            td(v-html="highlightText(item.category)")
-            td(v-html="highlightText(item.question)")
-            td.answer-cell(v-html="highlightText(parseAnswer(item.answer))")
-            td.answer-cell
-              .ui.bulleted.list(v-if="item.links && parseLinks(item.links).length > 0")
-                .item(v-for="link in parseLinks(item.links)" :key="link.h")
-                  a(:href="link.h" target="_blank" rel="noopener noreferrer") {{ link.t }}
-
+          tr(v-for="(item, index) in filteredAndSortedFaqItems" :key="item.id")
+            td
+              i.icon(:class="cataIcon(item.category)")
+              span(v-html="highlightText(item.category)")
+              
+            td
+              div(v-html="highlightText(item.question)")
+            td
+              router-link.ui.green.button(:to="'/ans/' + (item.id - 1)")
+                | 查看回答
+                i.chevron.right.icon
+            
   </template>
   
   <script lang="ts">
-  import { defineComponent, ref, onMounted } from 'vue'
+  import { catagories } from '../data/catagories.js'
+  import { defineComponent, ref, onMounted, PropType } from 'vue'
   import axios from 'axios'
   
   // 添加介面定義
@@ -55,40 +61,32 @@
       uid: {
         type: String,
         required: true
+      },
+      faqs: {
+        type: Array as PropType<FaqItem[]>,
+        required: true
       }
     },
-    setup() {
-      // 修改 ref 的型別定義
-      const faqItems = ref<FaqItem[]>([])
-      const categories = ref(['全部', '起步', '計畫', '支持', '資源', '其他'])
+    setup(props) {
+      const categories = ref(catagories)
       const searchKeyword = ref('')
       const selectedCategory = ref('全部')
   
-      onMounted(async () => {
-        try {
-          const response = await axios.get('https://members-backend.alearn13994229.workers.dev/api/Faq')
-          faqItems.value = response.data
-        } catch (error) {
-          console.error('獲取FAQ資料失敗:', error)
-        }
-      })
-  
       return {
-        faqItems,
-        categories,
         searchKeyword,
-        selectedCategory
+        selectedCategory,
+        categories
       }
     },
     computed: {
       sortedFaqItems(): FaqItem[] {
-        return this.faqItems.slice().sort((a, b) =>
+        return this.faqs.slice().sort((a, b) =>
           this.categories.indexOf(a.category) - this.categories.indexOf(b.category)
         )
       },
       filteredAndSortedFaqItems(): FaqItem[] {
         const keyword = this.searchKeyword.toLowerCase().trim()
-        let filtered = this.faqItems
+        let filtered = this.faqs || []
   
         // 先依類別過濾
         if (this.selectedCategory !== '全部') {
@@ -111,16 +109,12 @@
       }
     },
     methods: {
+      cataIcon(n) {
+        const category = this.categories.find(o => o.t === n)
+        return category?.icon || 'user'
+      },
       toggleLogin() {
         this.$emit('toggleLogin')
-      },
-      fetchFaq() {
-        this.faqItems = []
-        axios.get('https://members-backend.alearn13994229.workers.dev/api/Faq').then((response) => {
-          this.faqItems = response.data
-        }).catch((error) => {
-          console.error('獲取FAQ資料失敗:', error)
-        })
       },
       parseLinks(links: string) {
         console.log(links)
