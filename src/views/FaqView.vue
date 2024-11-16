@@ -41,19 +41,11 @@
             
   </template>
   
-  <script lang="ts">
+  <script>
   import { catagories } from '../data/catagories.js'
-  import { defineComponent, ref, onMounted, PropType } from 'vue'
+  import { defineComponent, ref, onMounted } from 'vue'
   import axios from 'axios'
   
-  // 添加介面定義
-  interface FaqItem {
-    id: string
-    category: string
-    question: string
-    answer: string
-    links?: string
-  }
   
   export default defineComponent({
     name: 'FaqView',
@@ -63,7 +55,7 @@
         required: true
       },
       faqs: {
-        type: Array as PropType<FaqItem[]>,
+        type: Array,
         required: true
       }
     },
@@ -79,21 +71,19 @@
       }
     },
     computed: {
-      sortedFaqItems(): FaqItem[] {
+      sortedFaqItems() {
         return this.faqs.slice().sort((a, b) =>
           this.categories.indexOf(a.category) - this.categories.indexOf(b.category)
         )
       },
-      filteredAndSortedFaqItems(): FaqItem[] {
+      filteredAndSortedFaqItems() {
         const keyword = this.searchKeyword.toLowerCase().trim()
         let filtered = this.faqs || []
   
-        // 先依類別過濾
         if (this.selectedCategory !== '全部') {
           filtered = filtered.filter(item => item.category === this.selectedCategory)
         }
   
-        // 再依關鍵字過濾
         if (keyword) {
           filtered = filtered.filter(item =>
             item.category.toLowerCase().includes(keyword) ||
@@ -102,7 +92,6 @@
           )
         }
   
-        // 最後依類別排序
         return filtered.sort((a, b) =>
           this.categories.indexOf(a.category) - this.categories.indexOf(b.category)
         )
@@ -116,15 +105,15 @@
       toggleLogin() {
         this.$emit('toggleLogin')
       },
-      parseLinks(links: string) {
+      parseLinks(links) {
         console.log(links)
         return JSON.parse(links)
       },
-      parseAnswer(answer: string) {
+      parseAnswer(answer) {
         console.log(answer)
         return answer.replace(/\\n/g, '\n')
       },
-      escapeHtml(text: string): string {
+      escapeHtml(text) {
         return text
           .replace(/&/g, '&amp;')
           .replace(/</g, '&lt;')
@@ -132,7 +121,7 @@
           .replace(/"/g, '&quot;')
           .replace(/'/g, '&#039;')
       },
-      highlightText(text: string): string {
+      highlightText(text) {
         if (!this.searchKeyword.trim()) return this.escapeHtml(text)
   
         const escapedText = this.escapeHtml(text)

@@ -9,7 +9,7 @@
       .ui.grid
         .row
           .column
-            p.description(v-html="highlightAndMakeBr(faqItem.answer, searchKeyword)")
+            p.description(v-html="highlightAndMakeBr(faqItem.answer, '')")
         
         .row
           .eighteen.wide.right.aligned.column(v-if="parsedLinks && parsedLinks.length")
@@ -49,13 +49,25 @@
       return {
         faqItem: null,
         handbook: {},
-        catagories: catagories
+        catagories: catagories,
+        loading: true,
+        parsedLinks: []
       }
     },
-    mounted () {
-      this.faqItem = this.faqs[this.$route.params.id]
+    watch: {
+      faqs: {
+        immediate: true,
+        handler(newVal) {
+          if (newVal && newVal.length > 0) {
+            this.faqItem = newVal[this.$route.params.id]
+            this.parsedLinks = this.faqItem.links ? this.parseLinks(this.faqItem.links) : []
+            this.loading = false
+          }
+        }
+      }
     },
     methods: {
+      // HTML特殊字元轉義，防止XSS攻擊
       escapeHtml(text) {
         return text
           .replace(/&/g, '&amp;')
@@ -63,10 +75,12 @@
           .replace(/>/g, '&gt;')
           .replace(/"/g, '&quot;')
       },
+      // 將空白字元轉換為HTML換行標籤
       makeBr: function (str) {
         str = str || ''
         return str.replace(/\s/g, '<br/>').replace(/&nbsp;/g, '<br/>') || ''
       },
+      // 處理文字高亮顯示和換行
       highlightAndMakeBr: function (text, search) {
         text = this.makeBr(text)
         if (!search) {
@@ -89,10 +103,13 @@
         this.$router.go(-1)
       },
       parseLinks(links) {
+        if (!links || !Array.isArray(links)) {
+          return [];
+        }
         return links.map(link => ({
           h: link.h,
           t: link.t
-        }))
+        }));
       }
     }
   })
