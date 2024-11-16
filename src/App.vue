@@ -35,10 +35,6 @@ ad.fat-only(v-if="!$route.path.startsWith('/embed')")
 <script>
 import Ad from './components/Ad-Be.vue'
 import { defineComponent } from 'vue'
-import { start } from './data/start.js'
-import { plan } from './data/plan.js'
-import { support } from './data/support.js'
-import { resource } from './data/resource.js'
 
 export default defineComponent({
   name: 'AutoMap',
@@ -47,11 +43,9 @@ export default defineComponent({
   },
   data() {
     return {
-      start,
-      plan,
-      faqs: start.concat(plan).concat(support).concat(resource),
+      faqs: [],
       marqueeStyle: {
-        animationDuration: '60s' // 預設值
+        animationDuration: '60s'
       }
     }
   },
@@ -59,33 +53,6 @@ export default defineComponent({
     parse: (s) => {
       return '您想知道' + s.replace('？', '嗎？')
     },
-    calculateScrollDuration() {
-      this.$nextTick(() => {
-        const marquee = this.$refs.marquee;
-        if (!marquee) return;
-
-        const marqueeContent = marquee.querySelector('.marquee-content');
-        const contentWidth = marqueeContent.offsetWidth;
-        const viewportWidth = window.innerWidth;
-        
-        // 確保內容至少滾動一個完整的視窗寬度
-        const scrollDistance = Math.max(contentWidth, viewportWidth);
-        
-        // 假設我們希望內容以每秒 150 像素的速度滾動
-        const pixelsPerSecond = 150;
-        const durationInSeconds = scrollDistance / pixelsPerSecond;
-
-        // 設置動畫持續時間
-        this.marqueeStyle.animationDuration = `${durationInSeconds}s`;
-      });
-    }
-  },
-  mounted() {
-    this.calculateScrollDuration();
-    window.addEventListener('resize', this.calculateScrollDuration);
-  },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.calculateScrollDuration);
   }
 })
 </script>

@@ -35,25 +35,17 @@
   <script>
   
   import { catagories } from '../data/catagories.js'
-  import { plan } from '../data/plan.js'
-  import { start } from '../data/start.js'
-  import { support } from '../data/support.js'
-  import { resource } from '../data/resource.js'
   
   import { defineComponent } from 'vue';
   
   export default  defineComponent({
     name: 'AnsView',
-    props: ['myKey'],
+    props: ['myKey', 'faqs'],
     data () {
       return {
         myQ: {q: '', as: [], es: []},
         handbook: {},
         catagories: catagories,
-        faqs: start
-          .concat(plan)
-          .concat(support)
-          .concat(resource)
       }
     },
     mounted () {

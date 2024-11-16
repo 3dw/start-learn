@@ -19,5 +19,10 @@ export const catagories = [
     "description": "文化與經濟上的資源",
     "color": "#c9c",
     "icon": "in cart",
+  },
+  { "t": "其他", 
+    "description": "其他各種可能的問題",
+    "color": "#ccc",
+    "icon": "question",
   }
 ]

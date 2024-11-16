@@ -1,127 +1,170 @@
 <template lang="pug">
-.faq
-  section
-    br
-    h1.ui.center.aligned.header 自學問答 
-    h4.ui.center.aligned.header 分類：
-      .ui.small.buttons
-        button.ui.button(
-          v-for="c in catagories",
-          :style="buttonStyle(c.t)",
-          @click="myC = c.t",
-          :title="c.description"
-        ) {{c.t}}
-      // button.ui.button(@click="myC = undefined") 全部
-  .ui.divider
-  br   
-  #main.ui.four.column.doubling.stackable.relaxed.grid.container
-    .column(
-      v-for="(f, index) in faqs",
-      v-show="(!myC || f.c == myC) && (!myKey || f.q.indexOf(myKey)>-1)"
-    )
-      .inner.bordered.bottom.right.left
-        h4.ui.center.aligned.icon.header
-          router-link(@click="myF=f", :to="'/ans/' + index")
-            i.circular.icon(v-bind:class="cataIcon(f.c)")
-            .description(v-html="highlightAndMakeBr(f.q, myKey)" v-bind:class="{orange: index % 2 == 0}")
-            br
-            .small.gray.note {{ f.as[0] }}...
-      a.ui.top.left.attached.ribbon.label(
-        v-bind:style="{ 'background-color': cataColor(f.c) }",
-        @click="myC = (!myC && f.c) || 0"
-      ) {{f.c}}
-</template>
+  div.faq-container
+    h2.ui.header 常見問題
+    .ui.container
+      form.ui.form
+        .two.stackable.fields
+          .field(style="max-width:150px;")
+            label 類別篩選
+            select.ui.dropdown(v-model="selectedCategory")
+              option(v-for="category in categories" :value="category") {{ category }}
+          .field
+            label 關鍵字篩選
+            .ui.icon.input
+              input(
+                type="text"
+                v-model="searchKeyword"
+                placeholder="搜尋常見問題..."
+              )
+              i.search.icon
+      table.ui.celled.table
+        thead
+          tr
+            th 類別
+            th 問題
+            th 回答
+            th 相關連結
+        tbody
+          tr(v-for="item in filteredAndSortedFaqItems" :key="item.id")
+            td(v-html="highlightText(item.category)")
+            td(v-html="highlightText(item.question)")
+            td.answer-cell(v-html="highlightText(parseAnswer(item.answer))")
+            td.answer-cell
+              .ui.bulleted.list(v-if="item.links && parseLinks(item.links).length > 0")
+                .item(v-for="link in parseLinks(item.links)" :key="link.h")
+                  a(:href="link.h" target="_blank" rel="noopener noreferrer") {{ link.t }}
+
+  </template>
   
-<script lang="typescript">
-import { catagories } from '../data/catagories.js'
-import { plan } from '../data/plan.js'
-import { start } from '../data/start.js'
-import { support } from '../data/support.js'
-import { resource } from '../data/resource.js'
-
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'FaqView',
-  data () {
-    return {
-      myC: '起步',
-      myKey: '',
-      catagories: catagories,
-      faqs: start.concat(plan).concat(support).concat(resource)
-    }
-  },
-  methods: {
-    makeBr(str) {
-      str = str || ''
-      return str.replace(/\s/g, '<br/>').replace(/&nbsp;/g, '<br/>') || ''
+  <script lang="ts">
+  import { defineComponent, ref, onMounted } from 'vue'
+  import axios from 'axios'
+  
+  // 添加介面定義
+  interface FaqItem {
+    id: string
+    category: string
+    question: string
+    answer: string
+    links?: string
+  }
+  
+  export default defineComponent({
+    name: 'FaqView',
+    props: {
+      uid: {
+        type: String,
+        required: true
+      }
     },
-    highlightAndMakeBr(text, search) {
-      text = this.makeBr(text)
-      if (!search) {
+    setup() {
+      // 修改 ref 的型別定義
+      const faqItems = ref<FaqItem[]>([])
+      const categories = ref(['全部', '起步', '計畫', '支持', '資源', '其他'])
+      const searchKeyword = ref('')
+      const selectedCategory = ref('全部')
+  
+      onMounted(async () => {
+        try {
+          const response = await axios.get('https://members-backend.alearn13994229.workers.dev/api/Faq')
+          faqItems.value = response.data
+        } catch (error) {
+          console.error('獲取FAQ資料失敗:', error)
+        }
+      })
+  
+      return {
+        faqItems,
+        categories,
+        searchKeyword,
+        selectedCategory
+      }
+    },
+    computed: {
+      sortedFaqItems(): FaqItem[] {
+        return this.faqItems.slice().sort((a, b) =>
+          this.categories.indexOf(a.category) - this.categories.indexOf(b.category)
+        )
+      },
+      filteredAndSortedFaqItems(): FaqItem[] {
+        const keyword = this.searchKeyword.toLowerCase().trim()
+        let filtered = this.faqItems
+  
+        // 先依類別過濾
+        if (this.selectedCategory !== '全部') {
+          filtered = filtered.filter(item => item.category === this.selectedCategory)
+        }
+  
+        // 再依關鍵字過濾
+        if (keyword) {
+          filtered = filtered.filter(item =>
+            item.category.toLowerCase().includes(keyword) ||
+            item.question.toLowerCase().includes(keyword) ||
+            item.answer.toLowerCase().includes(keyword)
+          )
+        }
+  
+        // 最後依類別排序
+        return filtered.sort((a, b) =>
+          this.categories.indexOf(a.category) - this.categories.indexOf(b.category)
+        )
+      }
+    },
+    methods: {
+      toggleLogin() {
+        this.$emit('toggleLogin')
+      },
+      fetchFaq() {
+        this.faqItems = []
+        axios.get('https://members-backend.alearn13994229.workers.dev/api/Faq').then((response) => {
+          this.faqItems = response.data
+        }).catch((error) => {
+          console.error('獲取FAQ資料失敗:', error)
+        })
+      },
+      parseLinks(links: string) {
+        console.log(links)
+        return JSON.parse(links)
+      },
+      parseAnswer(answer: string) {
+        console.log(answer)
+        return answer.replace(/\\n/g, '\n')
+      },
+      escapeHtml(text: string): string {
         return text
-      }
-      return text.replace(new RegExp(search, 'gi'), '<span class="highlightedText">$&</span>')
-    },
-    cataColor(n) {
-      return (this.catagories.filter(
-        function (o) { return o.t === n }
-      )[0] || {}).color || '#999'
-    },
-    cataIcon(n) {
-      return (this.catagories.filter(
-        function (o) { return o.t === n }
-      )[0] || {}).icon || 'user'
-    },
-    buttonStyle(t) {
-      if (t === this.myC) {
-        return {
-          'background-color': 'purple',
-          'color': 'white',
-          'text-decoration': 'underline'
-        }
-      } else {
-        const category = this.catagories.find(c => c.t === t)
-        return {
-          'background-color': category ? category.color : '#ffffff',
-          'color': 'black',
-          'border': 'none'
-        }
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;')
+      },
+      highlightText(text: string): string {
+        if (!this.searchKeyword.trim()) return this.escapeHtml(text)
+  
+        const escapedText = this.escapeHtml(text)
+        const keyword = this.escapeHtml(this.searchKeyword.toLowerCase().trim())
+        const regex = new RegExp(`(${keyword})`, 'gi')
+  
+        return escapedText.replace(regex, '<span class="highlight">$1</span>')
       }
     }
+  })
+  </script>
+  
+  <style scoped>
+  .faq-container {
+    padding: 2rem 0;
   }
-})
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-a {
-  color: #35495E;
-}
-
-.bordered {
-  border-radius: 0 0 15px 15px;
-}
-.bordered.right {
-    border-right: 2px solid #aaa;
+  
+  .answer-cell {
+    min-width: 20rem;
+    white-space: pre-line;
   }
-.bordered.left {
-  border-left: 2px solid #aaa;
-}
-.bordered.bottom {
-  border-bottom: 2px solid #aaa;
-}
-
-.small.gray.note {
-  font-size: 14px;
-  color: #aaa;
-  text-align: left;
-  padding-left: 1em;
-}
-
-</style>
-
+  
+  th, td {
+    min-width: 9rem;
+    font-size: 1.2rem;
+  }
+  
+  </style>
+  
