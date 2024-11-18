@@ -12,11 +12,11 @@
             p.description(v-html="highlightAndMakeBr(faqItem.answer, '')")
         
         .row
-          .eighteen.wide.right.aligned.column(v-if="parsedLinks && parsedLinks.length")
+          .eighteen.wide.right.aligned.column(v-if="faqItem && faqItem.links && faqItem.links.length")
             .ui.divider
-            span(v-for="(link, index) in parsedLinks")
+            span(v-for="(link, index) in JSON.parse(faqItem.links)")
               .ui.divider(v-show="index")
-              a(:href="link.h" target="_blank")
+              a(:href="link.h" target="_blank", :title="link.t", rel="noopener noreferrer")
                 i.globe.icon
                 | {{link.t}}
   
@@ -50,8 +50,7 @@
         faqItem: null,
         handbook: {},
         catagories: catagories,
-        loading: true,
-        parsedLinks: []
+        loading: true
       }
     },
     watch: {
@@ -60,7 +59,6 @@
         handler(newVal) {
           if (newVal && newVal.length > 0) {
             this.faqItem = newVal[this.$route.params.id]
-            this.parsedLinks = this.faqItem.links ? this.parseLinks(this.faqItem.links) : []
             this.loading = false
           }
         }
@@ -101,15 +99,6 @@
       },
       goBack() {
         this.$router.go(-1)
-      },
-      parseLinks(links) {
-        if (!links || !Array.isArray(links)) {
-          return [];
-        }
-        return links.map(link => ({
-          h: link.h,
-          t: link.t
-        }));
       }
     }
   })

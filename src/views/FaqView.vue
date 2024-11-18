@@ -50,10 +50,6 @@
   export default defineComponent({
     name: 'FaqView',
     props: {
-      uid: {
-        type: String,
-        required: true
-      },
       faqs: {
         type: Array,
         required: true
