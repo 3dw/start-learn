@@ -12,6 +12,9 @@ nav.ui.menu(v-if="!$route.path.startsWith('/embed')")
   router-link.item.fat-only(to="/outer")
     i.book.icon
     | 資源推薦
+  router-link.item(to="/github")
+    i.github.icon
+    span.fat-only 本專案源碼
 
 // .marquee-container
   .marquee(:style="marqueeStyle", ref="marquee")
