@@ -2,9 +2,14 @@
 div.hello
   //- 與AI對話
   .ui.segment.container
-    img(id="logo" alt="Logo" src="../assets/logo.png")
+    img.clickable(v-if="!showLineQRCode" id="logo" alt="Logo" src="../assets/logo.png", @click="showLineQRCode = true")
+    img.clickable(v-else id="logo" alt="Logo" src="../assets/autobot.png", @click="showLineQRCode = false")
+    
     h2.center.aligned.ui.header 自學AI
       .center.aligned.ui.sub.header 以自學問答集為基礎，提供更即時的回答
+      .center.aligned.ui.sub.header
+        a(href="https://lin.ee/CashU46", target="_blank", rel="noopener noreferrer") 將自學AI加入LINE好友
+
     .ui.input
       input(
         autofocus 
@@ -210,6 +215,7 @@ div.hello
     name: 'HelloWorld',
     data() {
       return {
+        showLineQRCode: false,
         message: '',
         result: '',
         isLoading: false,
