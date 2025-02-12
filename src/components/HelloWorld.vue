@@ -205,6 +205,40 @@ div.hello
         // a.ui.green.button(href="https://we.alearn.org.tw") 自學2.0
         a.ui.green.button(href="https://www.alearn.org.tw") 自主學習促進會
         a.ui.blue.button(href="https://galacticproject.notion.site/d7477db76ecd4ff3b453a39ba21d97ef") 星河計畫：自學生經驗匯流
+  
+      .ui.divider
+
+      h3 本站由非營利組織自主學習促進會提供🪱
+
+      .ui.cards.container
+
+        .card(id="/donate")
+          .content
+            .header 線上捐款支持
+            .description
+              img#donate-qrcode(src="../assets/autolearn_donate_QRCode.png", alt="線上捐款")
+
+              p 捐款流程：
+              ol
+                li 請掃描上方 QR Code 或使用以下帳戶進行捐款：
+                  br
+                  | 台北富邦 士林分行（012）
+                  br
+                  | 帳號：30012-0000601
+                  br
+                  | 戶名：社團法人中華民國自主學習促進會
+                li 完成捐款後，請將以下資訊寄至本會行政室：
+                  br
+                  a(href="mailto:alearn13994229@gmail.com") Email：alearn13994229@gmail.com
+                  ul
+                    li 捐款人姓名
+                    li 聯絡電話
+                    li 通訊地址
+                    li 捐款金額
+                    li 匯款帳號後五碼
+                    li 指定支持的專案（可略）
+                li 本會將開立捐款收據並寄回給您，可供節稅使用。
+
   </template>
   
   <script lang="ts">
@@ -318,5 +352,64 @@ div.hello
     line-height: 1.4;
     text-align: left;
   }
+
+  .ui.cards.container {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    width: calc(100% - 8em) !important;
+    background: #fff;
+    border-radius: 15px !important;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  @media screen and (max-width: 480px) {
+    .card {
+      width: calc(100% - 2em) !important;
+    }
+  }
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #66BB6A;
+  color: white;
+  font-weight: bold;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.25rem;
+  border-radius: 15px 15px 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.card .description {
+  padding: 15px;
+  padding-top: 40px;
+  color: #333;
+  line-height: 1.6;
+  text-align: left;
+}
+
+
+img#donate-qrcode {
+  display: block;
+  margin: 1em auto;
+}
 
   </style>
