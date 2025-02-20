@@ -227,16 +227,19 @@ div.hello
                   | 帳號：30012-0000601
                   br
                   | 戶名：社團法人中華民國自主學習促進會
-                li 完成捐款後，請將以下資訊寄至本會行政室：
-                  br
-                  a(href="mailto:alearn13994229@gmail.com") Email：alearn13994229@gmail.com
-                  ul
+                // li 完成捐款後，請將以下資訊寄至本會行政室：
+                //   br
+                //   a(href="mailto:alearn13994229@gmail.com") Email：alearn13994229@gmail.com
+                //   ul
                     li 捐款人姓名
                     li 聯絡電話
                     li 通訊地址
                     li 捐款金額
                     li 匯款帳號後五碼
                     li 指定支持的專案（可略）
+                li 完成捐款後，請填寫
+                  a(href="https://docs.google.com/forms/d/e/1FAIpQLSeUlMQeS4ztSkZ48GhytbQapT7TG-iBNB31YTWHVVT6XceGhQ/viewform",
+                    target="_blank", rel="noopener noreferrer") 捐款回饋表單
                 li 本會將開立捐款收據並寄回給您，可供節稅使用。
 
   </template>
