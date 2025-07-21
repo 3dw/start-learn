@@ -45,17 +45,17 @@ div.hello
     //- 快速導覽卡片
     .atproto-quick-nav
       .atproto-card.atproto-card-primary(@click="scrollToSection('stereotypes')")
-        h3.atproto-card-title 🥸 刻板印象
+        h3.atproto-card-title 刻板印象
         p.atproto-card-desc 打破對自學生的常見誤解
         span.atproto-card-link 了解更多
       
       .atproto-card.atproto-card-primary(@click="scrollToSection('application')")
-        h3.atproto-card-title 🛝 申請流程
+        h3.atproto-card-title 申請流程
         p.atproto-card-desc 完整的自學申請指南
         span.atproto-card-link 開始申請
       
       .atproto-card.atproto-card-primary(@click="scrollToSection('types')")
-        h3.atproto-card-title 👨‍👩‍👧‍👦 自學種類
+        h3.atproto-card-title 自學種類
         p.atproto-card-desc 個人、團體、機構自學
         span.atproto-card-link 探索選項
 
@@ -63,7 +63,7 @@ div.hello
     .atproto-content-section
       //- 刻板印象部分
       section.atproto-section#stereotypes
-        h2.atproto-section-title 1. 一些關於自學生的刻板印象🥸
+        h2.atproto-section-title 1. 一些關於自學生的刻板印象
         .atproto-grid
           .atproto-feature-card
             h4.atproto-feature-title 都是天才？？
@@ -83,7 +83,7 @@ div.hello
 
       //- 申請流程部分
       section.atproto-section#application
-        h2.atproto-section-title 2. 自學申請流程🛝
+        h2.atproto-section-title 2. 自學申請流程
         .atproto-process
           .atproto-process-step
             .atproto-step-number 1
@@ -132,7 +132,7 @@ div.hello
 
       //- 自學種類部分
       section.atproto-section#types
-        h2.atproto-section-title 3. 自學的種類👨‍👩‍👧‍👦
+        h2.atproto-section-title 3. 自學的種類
         .atproto-grid
           .atproto-feature-card
             h4.atproto-feature-title 個人自學
@@ -158,7 +158,7 @@ div.hello
 
       //- 自學生活部分
       section.atproto-section
-        h2.atproto-section-title 4. 自學生活🧞‍♂️
+        h2.atproto-section-title 4. 自學生活
         .atproto-grid
           .atproto-feature-card
             h4.atproto-feature-title 成績評定
@@ -200,7 +200,7 @@ div.hello
 
       //- 挑戰與溝通部分
       section.atproto-section
-        h2.atproto-section-title 5. 自學的挑戰🧨
+        h2.atproto-section-title 5. 自學的挑戰
         .atproto-grid
           .atproto-feature-card
             h4.atproto-feature-title 撞牆期
@@ -226,7 +226,7 @@ div.hello
 
       //- 溝通部分
       section.atproto-section
-        h2.atproto-section-title 6. 自學的溝通🗣️
+        h2.atproto-section-title 6. 自學的溝通
         .atproto-grid
           .atproto-feature-card
             h4.atproto-feature-title 與家長溝通
@@ -238,7 +238,7 @@ div.hello
 
       //- 發展部分
       section.atproto-section
-        h2.atproto-section-title 7. 自學後的發展🎯
+        h2.atproto-section-title 7. 自學後的發展
         .atproto-grid
           .atproto-feature-card
             h4.atproto-feature-title 畢業後的選擇
@@ -260,36 +260,33 @@ div.hello
 
       //- 問答集部分
       section.atproto-section
-        h2.atproto-section-title 8. 問答集❤️‍🩹
+        h2.atproto-section-title 8. 問答集
         .atproto-cta
           p.atproto-cta-text 請參考 ➡️
             router-link(to="faq") 自學問答集
 
         .atproto-divider
 
-        h3.atproto-subsection-title 找夥伴👫
+        h3.atproto-subsection-title 找夥伴
         .atproto-cta
           p.atproto-cta-text 請參考 ➡️
             a(href="https://we.alearn.org.tw") 自學2.0
 
         .atproto-divider
 
-        h3.atproto-subsection-title 真人諮詢👩‍🏫
+        h3.atproto-subsection-title 真人諮詢
         .atproto-cta
           p.atproto-cta-text 請用「您居住的縣市」 + 「非學校」當關鍵字，即可查詢到教育局的相關業務單位，通常都會有聯絡電話。
 
         .atproto-divider
 
-        h3.atproto-subsection-title 相關連結🪱
+        h3.atproto-subsection-title 相關連結
         .atproto-link-grid
           a.atproto-link-card(href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0070059") 
-            span.atproto-link-icon 📋
             span.atproto-link-text 高級中等以下教育階段非學校型態實驗教育實施條例
           a.atproto-link-card(href="https://www.alearn.org.tw") 
-            span.atproto-link-icon 🏛️
             span.atproto-link-text 自主學習促進會
           a.atproto-link-card(href="https://galacticproject.notion.site/d7477db76ecd4ff3b453a39ba21d97ef") 
-            span.atproto-link-icon ⭐
             span.atproto-link-text 星河計畫：自學生經驗匯流
 
         .atproto-divider
@@ -299,7 +296,7 @@ div.hello
           h3.atproto-subsection-title 關於我們
           .atproto-organization-card
             .atproto-org-header
-              h4.atproto-org-title 🪱 本站由非營利組織自主學習促進會提供
+              h4.atproto-org-title 本站由非營利組織自主學習促進會提供
             .atproto-org-content
               p.atproto-org-desc 本會是一個非營利組織，需要您的支持。
               .atproto-donation-section
