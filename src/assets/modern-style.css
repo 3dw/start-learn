@@ -895,7 +895,7 @@ body {
   color: inherit;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -955,7 +955,7 @@ body {
 
 .atproto-feature-title {
   font-size: 1.4rem;
-  font-weight: 600;
+  font-weight: normal;
   color: var(--text-primary);
   margin-bottom: var(--space-4);
   line-height: 1.3;
@@ -963,7 +963,9 @@ body {
 }
 
 .atproto-feature-desc {
-  font-size: 1.125rem;
+  text-align: left;
+  font-size: 1.2rem;
+  font-weight: bold;
   line-height: 1.5;
   color: var(--text-secondary);
   margin-bottom: var(--space-3);
@@ -1013,7 +1015,7 @@ body {
 }
 
 .atproto-step-title {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: var(--space-2);
@@ -1021,7 +1023,7 @@ body {
 }
 
 .atproto-step-desc {
-  font-size: 1rem;
+  font-size: 1.4rem;
   color: var(--text-secondary);
   margin-bottom: var(--space-4);
   padding-left: var(--space-8);
@@ -1029,7 +1031,7 @@ body {
 
 .atproto-step-detail {
   padding-left: var(--space-8);
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   color: var(--text-secondary);
 }
@@ -1094,9 +1096,10 @@ body {
 }
 
 .atproto-link-text {
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 500;
   line-height: 1.4;
+  text-decoration: underline;
 }
 
 /* 組織信息卡片 */
@@ -1155,6 +1158,7 @@ body {
 }
 
 .atproto-donation-desc {
+  text-align: left;
   font-size: 1rem;
   color: var(--text-white);
   line-height: 1.6;
