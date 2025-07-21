@@ -317,13 +317,13 @@ div.hello
 }
 
 .modern-text {
-  font-size: 1.8rem !important;
-  line-height: 1.8 !important;
+  font-size: 1.9rem !important;
+  line-height: 1.7 !important;
   color: var(--text-primary) !important;
   text-align: center !important;
-  max-width: 800px !important;
+  max-width: 850px !important;
   margin: 0 auto !important;
-  padding: var(--space-8) 0 !important;
+  padding: var(--space-6) 0 !important;
 }
 
 /* 確保所有內容都置中 */
@@ -402,7 +402,7 @@ div.hello
   }
   
   .modern-text {
-    font-size: 1.5rem !important;
+    font-size: 1.7rem !important;
     max-width: 95% !important;
   }
   
@@ -430,7 +430,7 @@ div.hello
   }
   
   .modern-text {
-    font-size: 1.5rem !important;
+    font-size: 1.6rem !important;
     max-width: 100% !important;
   }
   

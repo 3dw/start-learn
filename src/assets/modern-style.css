@@ -162,36 +162,36 @@ body {
   background: var(--bg-secondary);
 }
 
-/* 標題樣式 - 參考 6pack.care 的大字體 */
+/* 標題樣式 - 平衡的字體層次 */
 .modern-heading-1 {
-  font-size: 4rem;
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--text-primary);
-  margin: 0 0 var(--space-8) 0;
-  letter-spacing: -0.03em;
-}
-
-.modern-heading-2 {
-  font-size: 3rem;
+  font-size: 3.2rem;
   font-weight: 700;
   line-height: 1.2;
   color: var(--text-primary);
-  margin: 0 0 var(--space-6) 0;
+  margin: 0 0 var(--space-8) 0;
   letter-spacing: -0.02em;
 }
 
-.modern-heading-3 {
-  font-size: 2.5rem;
+.modern-heading-2 {
+  font-size: 2.6rem;
   font-weight: 700;
   line-height: 1.3;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-6) 0;
+  letter-spacing: -0.01em;
+}
+
+.modern-heading-3 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1.4;
   color: var(--text-primary);
   margin: 0 0 var(--space-5) 0;
   letter-spacing: -0.01em;
 }
 
 .modern-heading-4 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 600;
   line-height: 1.4;
   color: var(--text-primary);
@@ -332,20 +332,20 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* 列表樣式 - 參考 6pack.care 的學術風格 */
+/* 列表樣式 - 平衡的字體設計 */
 .modern-list {
   list-style: none;
   padding: 0;
   margin: 0;
   text-align: center;
-  max-width: 800px;
+  max-width: 850px;
   margin: 0 auto;
   padding: 0 var(--space-6);
 }
 
 .modern-list-item {
-  font-size: 1.8rem;
-  line-height: 1.8;
+  font-size: 1.9rem;
+  line-height: 1.7;
   padding: var(--space-5) 0;
   border-bottom: none;
   text-align: center;
@@ -378,15 +378,15 @@ body {
 }
 
 .modern-list-item .list .item {
-  font-size: 1.6rem;
-  line-height: 1.7;
+  font-size: 2rem;
+  line-height: 1.6;
   padding: var(--space-4) 0;
   color: var(--text-secondary);
   margin-bottom: var(--space-2);
 }
 
 .modern-list-item .description {
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   color: var(--text-light);
   font-style: italic;
   margin-top: var(--space-3);
@@ -700,11 +700,11 @@ body {
   }
   
   .modern-heading-1 {
-    font-size: 3.5rem;
+    font-size: 2.8rem;
   }
   
   .modern-heading-2 {
-    font-size: 2.8rem;
+    font-size: 2.3rem;
   }
   
   .modern-grid-cols-2,
@@ -739,21 +739,21 @@ body {
   }
   
   .modern-list-item {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
   
   .modern-list-item .header {
-    font-size: 1.9rem;
+    font-size: 2rem;
   }
   
   .modern-list-item .list .item {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
   }
 }
 
 @media (max-width: 480px) {
   .modern-heading-1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   
   .modern-hero {
@@ -779,16 +779,16 @@ body {
   }
   
   .modern-list-item {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     padding: var(--space-4) 0;
   }
   
   .modern-list-item .header {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
   
   .modern-list-item .list .item {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
   }
 }
 
