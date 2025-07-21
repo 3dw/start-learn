@@ -28,7 +28,7 @@ export default {
   padding: .5em .5em;
   font-size: 16px;
   transition: all 0.5s ease;
-  display: none; /* 暫時隱藏 */
+  /* display: none; 暫時隱藏 */
 }
 
 #ad:hover {
