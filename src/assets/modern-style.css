@@ -802,14 +802,14 @@ body {
 .atproto-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--space-16) var(--space-8);
+  padding: var(--space-12) var(--space-6);
 }
 
 /* 標題區域 */
 .atproto-hero-section {
   text-align: center;
-  margin-bottom: var(--space-20);
-  padding: var(--space-16) 0;
+  margin-bottom: var(--space-16);
+  padding: var(--space-12) 0;
 }
 
 .atproto-title {
@@ -842,15 +842,15 @@ body {
 .atproto-quick-nav {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-8);
-  margin-bottom: var(--space-20);
+  gap: var(--space-6);
+  margin-bottom: var(--space-16);
 }
 
 .atproto-card {
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
-  padding: var(--space-8);
+  padding: var(--space-6);
   transition: var(--transition-fast);
   text-decoration: none;
   color: inherit;
@@ -884,7 +884,7 @@ body {
 }
 
 .atproto-card-desc {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.5;
   margin-bottom: var(--space-6);
   opacity: 0.9;
@@ -907,8 +907,8 @@ body {
 }
 
 .atproto-section {
-  margin-bottom: var(--space-20);
-  padding: var(--space-12) 0;
+  margin-bottom: var(--space-16);
+  padding: var(--space-8) 0;
   scroll-margin-top: 100px;
 }
 
@@ -916,7 +916,7 @@ body {
   font-size: 2.75rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-8);
   text-align: center;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -935,7 +935,7 @@ body {
 .atproto-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: var(--space-8);
+  gap: var(--space-6);
 }
 
 /* 特色卡片 */
@@ -943,7 +943,7 @@ body {
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: var(--space-8);
+  padding: var(--space-6);
   transition: var(--transition-fast);
 }
 
@@ -963,7 +963,7 @@ body {
 }
 
 .atproto-feature-desc {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.5;
   color: var(--text-secondary);
   margin-bottom: var(--space-3);
@@ -978,14 +978,14 @@ body {
 .atproto-process {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: var(--space-6);
 }
 
 .atproto-process-step {
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: var(--space-8);
+  padding: var(--space-6);
   position: relative;
   transition: var(--transition-fast);
 }
@@ -1021,7 +1021,7 @@ body {
 }
 
 .atproto-step-desc {
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: var(--text-secondary);
   margin-bottom: var(--space-4);
   padding-left: var(--space-8);
@@ -1029,7 +1029,7 @@ body {
 
 .atproto-step-detail {
   padding-left: var(--space-8);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   line-height: 1.6;
   color: var(--text-secondary);
 }
@@ -1049,7 +1049,7 @@ body {
 }
 
 .atproto-cta-text {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: var(--text-primary);
   line-height: 1.6;
 }
@@ -1094,7 +1094,7 @@ body {
 }
 
 .atproto-link-text {
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 500;
   line-height: 1.4;
 }
@@ -1133,7 +1133,7 @@ body {
 }
 
 .atproto-org-desc {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: var(--text-secondary);
   margin-bottom: var(--space-8);
   line-height: 1.6;
@@ -1155,7 +1155,7 @@ body {
 }
 
 .atproto-donation-desc {
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: var(--text-white);
   line-height: 1.6;
   margin-bottom: var(--space-4);
@@ -1227,7 +1227,7 @@ body {
   }
 
   .atproto-description {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
   }
 
   .atproto-quick-nav {
