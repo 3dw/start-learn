@@ -683,69 +683,75 @@ body {
 /* 響應式設計 */
 @media (max-width: 768px) {
   :root {
-    --space-6: 1rem;
-    --space-8: 1.5rem;
-    --space-12: 2rem;
-    --space-16: 2.5rem;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
   }
-  
+
   .main-content {
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
+    padding: var(--space-6) var(--space-4);
   }
-  
+
   .ui.container {
     padding-left: var(--space-4) !important;
     padding-right: var(--space-4) !important;
   }
-  
+
   .modern-heading-1 {
     font-size: 2.8rem;
   }
-  
+
   .modern-heading-2 {
     font-size: 2.3rem;
   }
-  
+
   .modern-grid-cols-2,
   .modern-grid-cols-3,
   .modern-grid-cols-4 {
     grid-template-columns: 1fr;
   }
-  
+
   .ai-input-group {
     flex-direction: column;
   }
-  
+
   .ui.menu .item {
-    padding: var(--space-3) var(--space-4) !important;
+    font-size: 0.875rem;
+    padding: var(--space-2) var(--space-3);
   }
-  
+
   .fat-only {
-    display: none !important;
+    display: none;
   }
-  
+
   .modern-hero {
-    padding: var(--space-12) 0;
+    padding: var(--space-12) var(--space-6);
   }
-  
+
   #logo {
-    max-width: 150px;
+    max-width: 120px;
   }
-  
+
   .modern-list {
-    max-width: 95% !important;
-    padding: 0 var(--space-3) !important;
+    padding: 0 var(--space-4);
   }
-  
+
   .modern-list-item {
     font-size: 1.7rem;
   }
-  
+
   .modern-list-item .header {
     font-size: 2rem;
   }
-  
+
   .modern-list-item .list .item {
     font-size: 1.8rem;
   }
@@ -755,57 +761,409 @@ body {
   .modern-heading-1 {
     font-size: 2.5rem;
   }
-  
+
   .modern-hero {
-    padding: var(--space-10) 0;
+    padding: var(--space-8) var(--space-4);
   }
-  
+
   .modern-btn {
-    width: 100%;
-    justify-content: center;
+    padding: var(--space-2) var(--space-4);
+    font-size: 0.875rem;
   }
-  
+
   .ui.segment {
-    padding: var(--space-6) !important;
+    padding: var(--space-4);
   }
-  
+
   #logo {
-    max-width: 120px;
+    max-width: 100px;
   }
-  
+
   .modern-list {
-    max-width: 100% !important;
-    padding: 0 var(--space-2) !important;
+    padding: 0 var(--space-2);
   }
-  
+
   .modern-list-item {
     font-size: 1.6rem;
-    padding: var(--space-4) 0;
   }
-  
+
   .modern-list-item .header {
     font-size: 1.8rem;
   }
-  
+
   .modern-list-item .list .item {
     font-size: 1.7rem;
   }
 }
 
-/* 深色模式支持 */
+/* ===== AT Protocol 風格樣式 ===== */
+
+/* 主要容器 */
+.atproto-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-8);
+}
+
+/* 標題區域 */
+.atproto-hero-section {
+  text-align: center;
+  margin-bottom: var(--space-20);
+  padding: var(--space-16) 0;
+}
+
+.atproto-title {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: var(--space-6);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.atproto-subtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-8);
+  font-weight: 500;
+}
+
+.atproto-description {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 快速導覽卡片 */
+.atproto-quick-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-8);
+  margin-bottom: var(--space-20);
+}
+
+.atproto-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  transition: var(--transition-fast);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+}
+
+.atproto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+.atproto-card:active {
+  transform: translateY(-2px);
+  transition: transform 0.1s ease;
+}
+
+.atproto-card-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: var(--text-white);
+  border-color: var(--primary-color);
+}
+
+.atproto-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+  line-height: 1.3;
+}
+
+.atproto-card-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
+  opacity: 0.9;
+}
+
+.atproto-card-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* 內容區域 */
+.atproto-content-section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.atproto-section {
+  margin-bottom: var(--space-20);
+  padding: var(--space-12) 0;
+  scroll-margin-top: 100px;
+}
+
+.atproto-section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-12);
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.atproto-subsection-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-8);
+  text-align: center;
+}
+
+/* 網格佈局 */
+.atproto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-8);
+}
+
+/* 特色卡片 */
+.atproto-feature-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  transition: var(--transition-fast);
+}
+
+.atproto-feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
+}
+
+.atproto-feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  line-height: 1.4;
+}
+
+.atproto-feature-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.atproto-feature-desc:last-child {
+  margin-bottom: 0;
+}
+
+/* 流程步驟 */
+.atproto-process {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.atproto-process-step {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  position: relative;
+  transition: var(--transition-fast);
+}
+
+.atproto-process-step:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
+}
+
+.atproto-step-number {
+  position: absolute;
+  top: -12px;
+  left: var(--space-6);
+  background: var(--primary-color);
+  color: var(--text-white);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.atproto-step-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  padding-left: var(--space-8);
+}
+
+.atproto-step-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+  padding-left: var(--space-8);
+}
+
+.atproto-step-detail {
+  padding-left: var(--space-8);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.atproto-highlight {
+  background: var(--primary-light);
+  color: var(--primary-color);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+/* CTA 區域 */
+.atproto-cta {
+  text-align: center;
+  margin: var(--space-8) 0;
+}
+
+.atproto-cta-text {
+  font-size: 1.125rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* 分隔線 */
+.atproto-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: var(--space-12) 0;
+}
+
+/* 連結網格 */
+.atproto-link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.atproto-link-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  transition: var(--transition-fast);
+}
+
+.atproto-link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
+}
+
+.atproto-link-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.atproto-link-text {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+  .atproto-container {
+    padding: var(--space-12) var(--space-6);
+  }
+
+  .atproto-title {
+    font-size: 3rem;
+  }
+
+  .atproto-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .atproto-description {
+    font-size: 1.125rem;
+  }
+
+  .atproto-quick-nav {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .atproto-section-title {
+    font-size: 2rem;
+  }
+
+  .atproto-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .atproto-link-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .atproto-container {
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .atproto-title {
+    font-size: 2.5rem;
+  }
+
+  .atproto-section-title {
+    font-size: 1.75rem;
+  }
+
+  .atproto-card,
+  .atproto-feature-card,
+  .atproto-process-step {
+    padding: var(--space-6);
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
-    --text-light: #94a3b8;
-    --bg-primary: #0f172a;
-    --bg-secondary: #1e293b;
-    --bg-tertiary: #334155;
-    --border-color: #334155;
-    --border-light: #475569;
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-light: #808080;
+    --border-color: #333333;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
   }
-  
+
   .ui.menu {
-    background: rgba(15, 23, 42, 0.95) !important;
+    background: var(--bg-primary);
+    border-color: var(--border-color);
   }
 } 
