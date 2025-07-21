@@ -1,53 +1,53 @@
 <template lang="pug">
 div.hello
-  //- 與AI對話
-  .ui.segment.container
+  //- AI對話區域 - 使用現代化 hero 區域
+  .modern-hero
     img.clickable(v-if="!showLineQRCode" id="logo" alt="Logo" src="../assets/logo.png", @click="showLineQRCode = true")
     img.clickable(v-else id="logo" alt="Logo" src="../assets/autobot.png", @click="showLineQRCode = false")
     
-    h2.center.aligned.ui.header 自學AI
-      .center.aligned.ui.sub.header 以自學問答集為基礎，提供更即時的回答
-      .center.aligned.ui.sub.header
-        a(href="https://lin.ee/CashU46", target="_blank", rel="noopener noreferrer") 將自學AI加入LINE好友
+    h2.modern-heading-2 🤖 自學AI
+    p 以自學問答集為基礎，提供更即時的回答
+    p
+      a(href="https://lin.ee/CashU46", target="_blank", rel="noopener noreferrer", style="color: white; text-decoration: underline;") 將自學AI加入LINE好友
 
-    .ui.input
-      input(
-        autofocus 
-        type="text" 
-        placeholder="問AI關於自學的任何問題..." 
-        v-model="message"
-        @keyup.enter="sendMessage"
-      )
-      button.ui.primary.button(@click="sendMessage") 送出
-    .result
-      p(v-if="result === '' && message !== '' && isLoading") 載入中，請稍候...
-      div(v-else-if="result !== ''")
-        p {{ parseResult(result) }}
-        br
-        br
-        p 您覺得這個回答怎麼樣呢？
-        .ui.buttons
-          button.ui.green.button(@click="sendFeedback('good')")
-            i.thumbs.up.icon
-            | 很棒
-          button.ui.red.button(@click="sendFeedback('bad')")
-            i.thumbs.down.icon
-            | 不佳
+    .ai-chat-container
+      .ai-input-group
+        input.ai-input(
+          autofocus 
+          type="text" 
+          placeholder="問AI關於自學的任何問題..." 
+          v-model="message"
+          @keyup.enter="sendMessage"
+        )
+        button.modern-btn.modern-btn-secondary(@click="sendMessage") 送出
+      .ai-result(v-if="result !== '' || (message !== '' && isLoading)")
+        p(v-if="result === '' && message !== '' && isLoading") 
+          span.modern-loading
+          |  載入中，請稍候...
+        div(v-else-if="result !== ''")
+          p {{ parseResult(result) }}
+          .mt-6
+            p 您覺得這個回答怎麼樣呢？
+            .flex.items-center.justify-center.gap-md.mt-4
+              button.modern-btn.modern-btn-secondary(@click="sendFeedback('good')")
+                | 👍 很棒
+              button.modern-btn.modern-btn-outline(@click="sendFeedback('bad')", style="border-color: rgba(255,255,255,0.5); color: white;")
+                | 👎 不佳
 
-  .ui.segment.container
-    h1.ui.header 自學
-      sub.header 正式名稱為「非學校型態實驗教育」
-    section
-      h2.ui.header 1. 一些關於自學生的刻板印象🥸
-      .ui.list
-        .item 1.1 都是天才??  ➡️ 不一定!
-        .item 1.2 家裡很有錢??  ➡️ 不一定!
-        .item 1.3 沒有朋友??    ➡️ 完全不是!
-        .item 1.4 社交能力差??    ➡️ 因人而異!
-        .item 1.5 自制力很強??   ➡️ 因人而異!
-    section
-      h2.ui.header 2. 自學申請流程🛝
-      .ui.list
+  .ui.segment.container.modern-style
+    h1.modern-heading-1.center.aligned 自學
+      .sub.header.center.aligned 正式名稱為「非學校型態實驗教育」
+    section.modern-section
+      h2.modern-heading-3.center.aligned 1. 一些關於自學生的刻板印象🥸
+      .modern-list
+        .modern-list-item 1.1 都是天才??  ➡️ 不一定!
+        .modern-list-item 1.2 家裡很有錢??  ➡️ 不一定!
+        .modern-list-item 1.3 沒有朋友??    ➡️ 完全不是!
+        .modern-list-item 1.4 社交能力差??    ➡️ 因人而異!
+        .modern-list-item 1.5 自制力很強??   ➡️ 因人而異!
+    section.modern-section
+      h2.modern-heading-3.center.aligned 2. 自學申請流程🛝
+      .modern-list
         .item
           .header 2.1 申請時間
           .list
@@ -89,9 +89,9 @@ div.hello
           .list
             .item 2.5.1 
               router-link(to="/senior") 「第一次申請高中自學就上手」工作坊記錄
-    section
-      h2.ui.header 3. 自學的種類👨‍👩‍👧‍👦
-      .ui.list
+    section.modern-section
+      h2.modern-heading-3.center.aligned 3. 自學的種類👨‍👩‍👧‍👦
+      .modern-list
         .item
           .header 3.1 個人自學
           .list
@@ -106,9 +106,9 @@ div.hello
           .header 3.3 機構自學
           .list
             .item 由專業教育機構提供課程和資源，計畫書需經過審核
-    section
-      h2.ui.header 4. 自學生活🧞‍♂️
-      .ui.list
+    section.modern-section
+      h2.modern-heading-3.center.aligned 4. 自學生活🧞‍♂️
+      .modern-list
         .item
           .header 4.1 成績評定
           .list
@@ -132,9 +132,9 @@ div.hello
             .item 4.4.1 自學生活動：聚會、讀書會或主題討論
             .item 4.4.2 外部講座與活動：參與各種公開活動，拓展視野
             .item 4.4.3 競賽：參加各種競賽，如科學展覽、數學競賽等
-    section
-      h2.ui.header 5. 自學的挑戰🧨
-      .ui.list
+    section.modern-section
+      h2.modern-heading-3.center.aligned 5. 自學的挑戰🧨
+      .modern-list
         .item
           .header 5.1 撞牆期
           .list
@@ -151,75 +151,64 @@ div.hello
             .item 5.2.2 擔心社交問題：可請家長參考
               .description 
                 a(href="https://we.alearn.org.tw") 自學2.0
-    section
-      h2.ui.header 6. 自學的溝通🗣️
-      .ui.list
-        .item
+    section.modern-section
+      h2.modern-heading-3.center.aligned 6. 自學的溝通🗣️
+      .modern-list
+        .modern-list-item
           .header 6.1 與家長溝通
           .list
             .item 計劃與目標：計劃書的撰寫、家長的期望和孩子的興趣
-        .item
+        .modern-list-item
           .header 6.2 與學校溝通
           .list
             .item 合作方式：掛籍在學校，可完全在家自學，也可部分時間在學校上課，部分時間自學
-    section
-      h2.ui.header 7. 自學後的發展🎯
-      .ui.list
-        .item
+    section.modern-section
+      h2.modern-heading-3.center.aligned 7. 自學後的發展🎯
+      .modern-list
+        .modern-list-item
           .header 7.1 畢業後的選擇
           .list
             .item 7.1.1 考大學
             .item 7.1.2 工作或實習
-        .item
+        .modern-list-item
           .header 7.2 自學經驗的影響
           .list
             .item 7.2.1 成熟度 ➡️ 
               router-link(to="four") 學習自律四階段🐫
             .item 7.2.2 自我管理能力
-    section
-      h2.ui.header 8. 問答集❤️‍🩹
+    section.modern-section
+      h2.modern-heading-3.center.aligned 8. 問答集❤️‍🩹
 
-      p 請參考 ➡️ 
+      p.modern-text 請參考 ➡️ 
         router-link(to="faq") 自學問答集
       
       .ui.divider 
       
-      h3 找夥伴👫
-      
-      p 請參考 ➡️ 
-        a(href="https://we.alearn.org.tw") 自學2.0
+      section.modern-section
+        h3.modern-heading-4.center.aligned 找夥伴👫
+        
+        p.modern-text 請參考 ➡️ 
+          a(href="https://we.alearn.org.tw") 自學2.0
 
       .ui.divider 
       
-      h3 真人諮詢👩‍🏫
-
-      p 請用「您居住的縣市」 + 「非學校」當關鍵字，即可查詢到教育局的相關業務單位，通常都會有聯絡電話。
-      
+      section.modern-section
+        h3.modern-heading-4.center.aligned 真人諮詢👩‍🏫
+        p.modern-text 請用「您居住的縣市」 + 「非學校」當關鍵字，即可查詢到教育局的相關業務單位，通常都會有聯絡電話。
       
       .ui.divider 
-      
 
-      h3 相關連結🪱
-      .ui.vertical.large.buttons
-        a.ui.teal.button(href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0070059") 	高級中等以下教育階段非學校型態實驗教育實施條例
-        // a.ui.green.button(href="https://we.alearn.org.tw") 自學2.0
-        a.ui.green.button(href="https://www.alearn.org.tw") 自主學習促進會
-        a.ui.blue.button(href="https://galacticproject.notion.site/d7477db76ecd4ff3b453a39ba21d97ef") 星河計畫：自學生經驗匯流
+      section.modern-section
+        h3.modern-heading-4.center.aligned 相關連結🪱
+      .modern-grid.modern-grid-cols-1.mt-6
+        a.modern-btn.modern-btn-primary.modern-btn-lg(href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0070059") 📋 高級中等以下教育階段非學校型態實驗教育實施條例
+        // a.modern-btn.modern-btn-secondary.modern-btn-lg(href="https://we.alearn.org.tw") 自學2.0
+        a.modern-btn.modern-btn-secondary.modern-btn-lg(href="https://www.alearn.org.tw") 🏛️ 自主學習促進會
+        a.modern-btn.modern-btn-outline.modern-btn-lg(href="https://galacticproject.notion.site/d7477db76ecd4ff3b453a39ba21d97ef") ⭐ 星河計畫：自學生經驗匯流
   
       .ui.divider
 
-      h2 本站由非營利組織
-        br.thin-only 
-        | 自主學習促進會提供🪱
 
-      .ui.fluid.segment
-        .content
-          h3.ui.header 以愛心碼捐助本會
-          .description
-            p 本會是一個非營利組織，需要您的支持。
-            p 愛心碼取為「9806」，是因為最初成立的契機，在於1998~2006年的「台北市自主學習（中學六年一貫）實驗計畫」，本會第一代會員多是計畫中的親師生及關注計畫的學者賢達，別具意義。
-            p 邀請並歡迎大家未來在開立電子發票的商家購物時，可主動向店員要求使用愛心碼，說出捐贈碼9806，或出示條碼即可。發票若中獎，將會自動捐入本會！
-            img#donate(src="../assets/9806.png", alt="愛心碼")
 
   </template>
   
@@ -279,120 +268,178 @@ div.hello
   });
   </script>
   
-  <style scoped>
-  .ui.container {
-    margin-top: 20px;
-    max-width: 480px !important;
-  }
-  .ui.header {
-    margin-top: 1em !important;
-  }
-  .ui.list .header {
-    margin-top: 10px;
-  }
+<style scoped>
+/* HelloWorld 組件特定樣式 */
+.hello {
+  padding: 0;
+}
 
-  .ui.list .item, .header, p {
-    text-align: left;
-  }
+/* Logo 樣式在 hero 區域中 */
+#logo {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: var(--space-6);
+  transition: var(--transition);
+  cursor: pointer;
+  border-radius: var(--radius-xl);
+}
 
-  .ui.list .item, p {
-    font-size: 16px;
-    line-height: 1.4;
-  }
+#logo:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
 
-  .description {
-    margin-top: .6em;
-    font-style: italic;
-  }
 
+
+/* 現代化風格樣式 */
+.modern-style {
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+  padding: var(--space-16) var(--space-10) !important;
+  text-align: center !important;
+  line-height: 1.8 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.modern-section {
+  margin-bottom: var(--space-16) !important;
+  text-align: center !important;
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.modern-text {
+  font-size: 1.8rem !important;
+  line-height: 1.8 !important;
+  color: var(--text-primary) !important;
+  text-align: center !important;
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  padding: var(--space-8) 0 !important;
+}
+
+/* 確保所有內容都置中 */
+.ui.segment.container.modern-style {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.ui.segment.container.modern-style h1,
+.ui.segment.container.modern-style h2,
+.ui.segment.container.modern-style h3,
+.ui.segment.container.modern-style p,
+.ui.segment.container.modern-style .item,
+.ui.segment.container.modern-style .header,
+.ui.segment.container.modern-style .list,
+.ui.segment.container.modern-style .list .item {
+  text-align: center !important;
+  width: 100% !important;
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* 覆蓋 Semantic UI 的預設對齊 */
+.ui.header {
+  text-align: center !important;
+}
+
+.ui.list .item {
+  text-align: center !important;
+}
+
+.ui.list .item .header {
+  text-align: center !important;
+}
+
+.ui.list .item .list {
+  text-align: center !important;
+}
+
+.ui.list .item .list .item {
+  text-align: center !important;
+}
+
+
+
+/* 響應式設計 */
+@media (max-width: 768px) {
   #logo {
-    max-width: 33vmin;
+    max-width: 150px;
   }
-
-  .ui.input {
-    min-width: 320px;
+  
+  .modern-grid-cols-1 {
+    grid-template-columns: 1fr;
   }
-
-  input[type="text"] {
-    font-size: 1.2rem !important;
-  }
-
-  input[type="text"]:placeholder-shown {
-    font-size: 1.2rem !important;
-  }
-
-  .result {
-    margin-top: 1em;
-    font-size: 16px;
-    line-height: 1.4;
-    text-align: left;
-    white-space: pre-wrap;
-  }
-
-  p {
-    font-size: 18px;
-    line-height: 1.4;
-    text-align: left;
-  }
-
-  .ui.cards.container {
-    margin-top: 1em;
-    display: flex;
+  
+  .ai-input-group {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
-
-  .card {
-    width: calc(100% - 8em) !important;
-    background: #fff;
-    border-radius: 15px !important;
-    overflow: hidden;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  .modern-btn-lg {
+    padding: var(--space-3) var(--space-5);
+    font-size: 0.9rem;
   }
-
-  @media screen and (max-width: 480px) {
-    .card {
-      width: calc(100% - 2em) !important;
-    }
+  
+  .modern-style {
+    padding: var(--space-10) var(--space-6) !important;
+    max-width: 95% !important;
   }
+  
+  .modern-section {
+    max-width: 95% !important;
+  }
+  
+  .modern-text {
+    font-size: 1.5rem !important;
+    max-width: 95% !important;
+  }
+  
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.card .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #66BB6A;
-  color: white;
-  font-weight: bold;
-  padding: 15px;
-  text-align: center;
-  font-size: 1.25rem;
-  border-radius: 15px 15px 0 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+@media (max-width: 480px) {
+  #logo {
+    max-width: 120px;
+  }
+  
+  .modern-btn-lg {
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.85rem;
+  }
+  
+  .modern-style {
+    padding: var(--space-8) var(--space-4) !important;
+    max-width: 100% !important;
+  }
+  
+  .modern-section {
+    max-width: 100% !important;
+    margin-bottom: var(--space-10) !important;
+  }
+  
+  .modern-text {
+    font-size: 1.5rem !important;
+    max-width: 100% !important;
+  }
+  
+
 }
 
-.card .description {
-  padding: 15px;
-  padding-top: 40px;
-  color: #333;
-  line-height: 1.6;
-  text-align: left;
+/* 確保分隔線樣式 */
+.ui.divider {
+  border-top: 1px solid var(--border-color) !important;
+  margin: var(--space-8) 0 !important;
 }
-
-
-img#donate {
-  display: block;
-  margin: 1em auto;
-  max-width: 100%;
-}
-
-  </style>
+</style>

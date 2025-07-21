@@ -1,0 +1,811 @@
+/* 現代化風格 - 結合 6pack.care 和 atproto.com 設計 */
+
+/* CSS 變數 - 參考 6pack.care 和 atproto.com 的設計 */
+:root {
+  /* 主色調 - 參考 atproto.com 的藍色系 */
+  --primary-color: #0066ff;
+  --primary-hover: #0052cc;
+  --primary-light: #e6f2ff;
+  --secondary-color: #6366f1;
+  --accent-color: #10b981;
+  --success-color: #059669;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  
+  /* 中性色調 - 參考 6pack.care 的學術風格 */
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a5568;
+  --text-light: #718096;
+  --text-white: #ffffff;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  
+  /* 陰影 - 現代化設計 */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* 字體 - 參考 6pack.care 的學術風格 */
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  
+  /* 間距 - 參考 6pack.care 的寬鬆間距 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  
+  /* 圓角 */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  
+  /* 過渡效果 */
+  --transition: all 0.2s ease-in-out;
+  --transition-fast: all 0.15s ease-in-out;
+  --transition-slow: all 0.3s ease-in-out;
+}
+
+/* 全局樣式重置 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  font-family: var(--font-primary);
+}
+
+body {
+  margin: 0;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 覆蓋 Semantic UI 的導航樣式 */
+.ui.menu {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px);
+  border: none !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  box-shadow: var(--shadow-sm) !important;
+  margin: 0 !important;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: var(--transition);
+}
+
+.ui.menu .item {
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+  padding: var(--space-4) var(--space-5) !important;
+  transition: var(--transition-fast) !important;
+  border-radius: var(--radius-md) !important;
+  margin: 0 var(--space-1) !important;
+}
+
+.ui.menu .item:hover {
+  background: var(--bg-secondary) !important;
+  color: var(--primary-color) !important;
+}
+
+.ui.menu .item.router-link-exact-active,
+.ui.menu .item.router-link-active {
+  background: var(--primary-light) !important;
+  color: var(--primary-color) !important;
+  font-weight: 600 !important;
+}
+
+.ui.menu .item > .icon {
+  margin-right: var(--space-2) !important;
+}
+
+/* 主要內容區域 - 參考 6pack.care 的寬鬆佈局 */
+.main-content {
+  padding: var(--space-8) 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+/* 卡片樣式 - 參考 atproto.com */
+.modern-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.modern-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.modern-card-header {
+  padding: var(--space-6);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+}
+
+.modern-card-body {
+  padding: var(--space-6);
+}
+
+.modern-card-footer {
+  padding: var(--space-6);
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+}
+
+/* 標題樣式 - 參考 6pack.care 的大字體 */
+.modern-heading-1 {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-8) 0;
+  letter-spacing: -0.03em;
+}
+
+.modern-heading-2 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-6) 0;
+  letter-spacing: -0.02em;
+}
+
+.modern-heading-3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-5) 0;
+  letter-spacing: -0.01em;
+}
+
+.modern-heading-4 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+/* 按鈕樣式 - 參考 atproto.com */
+.modern-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  min-height: 2.5rem;
+  white-space: nowrap;
+}
+
+.modern-btn-primary {
+  background: var(--primary-color);
+  color: var(--text-white);
+  border-color: var(--primary-color);
+}
+
+.modern-btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: var(--text-white);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.modern-btn-secondary {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.modern-btn-secondary:hover {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.modern-btn-outline {
+  background: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.modern-btn-outline:hover {
+  background: var(--primary-color);
+  color: var(--text-white);
+}
+
+.modern-btn-lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: 1rem;
+  min-height: 3rem;
+}
+
+/* Hero 區域 - 參考 atproto.com 的首頁 */
+.modern-hero {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: var(--text-white);
+  padding: var(--space-16) 0;
+  text-align: center;
+  border-radius: var(--radius-2xl);
+  margin-bottom: var(--space-12);
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.modern-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* AI 對話區域 */
+.ai-chat-container {
+  max-width: 600px;
+  margin: var(--space-8) auto 0;
+}
+
+.ai-input-group {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.ai-input {
+  flex: 1;
+  padding: var(--space-4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-white);
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.ai-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ai-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.ai-result {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-top: var(--space-6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 列表樣式 - 參考 6pack.care 的學術風格 */
+.modern-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.modern-list-item {
+  font-size: 1.8rem;
+  line-height: 1.8;
+  padding: var(--space-5) 0;
+  border-bottom: none;
+  text-align: center;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+  transition: var(--transition-fast);
+}
+
+.modern-list-item:hover {
+  background: var(--bg-secondary);
+  padding-left: var(--space-5);
+  padding-right: var(--space-5);
+  border-radius: var(--radius-md);
+  transform: translateX(4px);
+}
+
+.modern-list-item .header {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-5);
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.modern-list-item .list {
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+
+.modern-list-item .list .item {
+  font-size: 1.6rem;
+  line-height: 1.7;
+  padding: var(--space-4) 0;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.modern-list-item .description {
+  font-size: 1.3rem;
+  color: var(--text-light);
+  font-style: italic;
+  margin-top: var(--space-3);
+  line-height: 1.6;
+}
+
+/* 網格系統 */
+.modern-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.modern-grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.modern-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.modern-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.modern-grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* 輸入框樣式 */
+.modern-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: var(--transition-fast);
+}
+
+.modern-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.modern-input::placeholder {
+  color: var(--text-light);
+}
+
+/* 覆蓋 Semantic UI 的容器樣式 */
+.ui.container {
+  max-width: 1200px !important;
+  padding-left: var(--space-6) !important;
+  padding-right: var(--space-6) !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* 覆蓋 Semantic UI 的段落樣式 */
+.ui.segment {
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-sm) !important;
+  padding: var(--space-8) !important;
+  margin: var(--space-6) auto !important;
+  max-width: 1000px !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* 覆蓋 Semantic UI 的標題樣式 */
+.ui.header {
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+  margin: 0 0 var(--space-4) 0 !important;
+  text-align: center !important;
+}
+
+.ui.header.center.aligned {
+  text-align: center !important;
+}
+
+/* 確保所有列表項目都置中 */
+.ui.list {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 900px !important;
+}
+
+.ui.list .item {
+  text-align: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.ui.list .item .header {
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.ui.list .item .list {
+  text-align: center !important;
+  width: 100% !important;
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.ui.list .item .list .item {
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.ui.list .item .description {
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* 覆蓋 Semantic UI 的按鈕樣式 */
+.ui.button {
+  border-radius: var(--radius-lg) !important;
+  font-weight: 500 !important;
+  transition: var(--transition-fast) !important;
+  padding: var(--space-3) var(--space-6) !important;
+  border: 1px solid transparent !important;
+}
+
+.ui.button.primary {
+  background: var(--primary-color) !important;
+  color: var(--text-white) !important;
+}
+
+.ui.button.primary:hover {
+  background: var(--primary-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+.ui.button.green {
+  background: var(--success-color) !important;
+  color: var(--text-white) !important;
+}
+
+.ui.button.green:hover {
+  background: #047857 !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+.ui.button.teal {
+  background: #0891b2 !important;
+  color: var(--text-white) !important;
+}
+
+.ui.button.teal:hover {
+  background: #0e7490 !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+.ui.button.blue {
+  background: var(--primary-color) !important;
+  color: var(--text-white) !important;
+}
+
+.ui.button.blue:hover {
+  background: var(--primary-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* 覆蓋 Semantic UI 的表格樣式 */
+.ui.table {
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-sm) !important;
+  overflow: hidden !important;
+}
+
+.ui.table thead th {
+  background: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+  padding: var(--space-4) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.ui.table tbody td {
+  padding: var(--space-4) !important;
+  border-bottom: 1px solid var(--border-light) !important;
+}
+
+.ui.table tbody tr:hover {
+  background: var(--bg-secondary) !important;
+}
+
+/* 覆蓋 Semantic UI 的表單樣式 */
+.ui.form .field > label {
+  color: var(--text-primary) !important;
+  font-weight: 500 !important;
+  margin-bottom: var(--space-2) !important;
+}
+
+.ui.form input[type="text"],
+.ui.form select,
+.ui.form textarea {
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: var(--space-3) var(--space-4) !important;
+  font-size: 1rem !important;
+  transition: var(--transition-fast) !important;
+}
+
+.ui.form input[type="text"]:focus,
+.ui.form select:focus,
+.ui.form textarea:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px var(--primary-light) !important;
+}
+
+/* Logo 樣式 */
+#logo {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: var(--space-6);
+  transition: var(--transition);
+  cursor: pointer;
+  border-radius: var(--radius-xl);
+}
+
+#logo:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 載入動畫 */
+.modern-loading {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 工具類別 */
+.text-center { text-align: center !important; }
+.text-left { text-align: left !important; }
+.text-right { text-align: right !important; }
+
+.mb-2 { margin-bottom: var(--space-2) !important; }
+.mb-4 { margin-bottom: var(--space-4) !important; }
+.mb-6 { margin-bottom: var(--space-6) !important; }
+.mb-8 { margin-bottom: var(--space-8) !important; }
+
+.mt-2 { margin-top: var(--space-2) !important; }
+.mt-4 { margin-top: var(--space-4) !important; }
+.mt-6 { margin-top: var(--space-6) !important; }
+.mt-8 { margin-top: var(--space-8) !important; }
+
+.p-4 { padding: var(--space-4) !important; }
+.p-6 { padding: var(--space-6) !important; }
+.p-8 { padding: var(--space-8) !important; }
+
+.hidden { display: none !important; }
+.block { display: block !important; }
+.flex { display: flex !important; }
+.inline-flex { display: inline-flex !important; }
+
+.items-center { align-items: center !important; }
+.justify-center { justify-content: center !important; }
+.justify-between { justify-content: space-between !important; }
+
+.rounded { border-radius: var(--radius-md) !important; }
+.rounded-lg { border-radius: var(--radius-lg) !important; }
+.rounded-xl { border-radius: var(--radius-xl) !important; }
+
+.shadow { box-shadow: var(--shadow-sm) !important; }
+.shadow-md { box-shadow: var(--shadow-md) !important; }
+.shadow-lg { box-shadow: var(--shadow-lg) !important; }
+
+.gap-sm { gap: var(--space-2) !important; }
+.gap-md { gap: var(--space-4) !important; }
+.gap-lg { gap: var(--space-6) !important; }
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  :root {
+    --space-6: 1rem;
+    --space-8: 1.5rem;
+    --space-12: 2rem;
+    --space-16: 2.5rem;
+  }
+  
+  .main-content {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+  
+  .ui.container {
+    padding-left: var(--space-4) !important;
+    padding-right: var(--space-4) !important;
+  }
+  
+  .modern-heading-1 {
+    font-size: 3.5rem;
+  }
+  
+  .modern-heading-2 {
+    font-size: 2.8rem;
+  }
+  
+  .modern-grid-cols-2,
+  .modern-grid-cols-3,
+  .modern-grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  .ai-input-group {
+    flex-direction: column;
+  }
+  
+  .ui.menu .item {
+    padding: var(--space-3) var(--space-4) !important;
+  }
+  
+  .fat-only {
+    display: none !important;
+  }
+  
+  .modern-hero {
+    padding: var(--space-12) 0;
+  }
+  
+  #logo {
+    max-width: 150px;
+  }
+  
+  .modern-list {
+    max-width: 95% !important;
+    padding: 0 var(--space-3) !important;
+  }
+  
+  .modern-list-item {
+    font-size: 1.6rem;
+  }
+  
+  .modern-list-item .header {
+    font-size: 1.9rem;
+  }
+  
+  .modern-list-item .list .item {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modern-heading-1 {
+    font-size: 3rem;
+  }
+  
+  .modern-hero {
+    padding: var(--space-10) 0;
+  }
+  
+  .modern-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .ui.segment {
+    padding: var(--space-6) !important;
+  }
+  
+  #logo {
+    max-width: 120px;
+  }
+  
+  .modern-list {
+    max-width: 100% !important;
+    padding: 0 var(--space-2) !important;
+  }
+  
+  .modern-list-item {
+    font-size: 1.4rem;
+    padding: var(--space-4) 0;
+  }
+  
+  .modern-list-item .header {
+    font-size: 1.6rem;
+  }
+  
+  .modern-list-item .list .item {
+    font-size: 1.2rem;
+  }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-light: #94a3b8;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --border-color: #334155;
+    --border-light: #475569;
+  }
+  
+  .ui.menu {
+    background: rgba(15, 23, 42, 0.95) !important;
+  }
+} 
