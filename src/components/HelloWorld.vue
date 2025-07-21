@@ -292,6 +292,26 @@ div.hello
             span.atproto-link-icon ⭐
             span.atproto-link-text 星河計畫：自學生經驗匯流
 
+        .atproto-divider
+
+        //- 組織信息區域
+        section.atproto-section
+          h3.atproto-subsection-title 關於我們
+          .atproto-organization-card
+            .atproto-org-header
+              h4.atproto-org-title 🪱 本站由非營利組織自主學習促進會提供
+            .atproto-org-content
+              p.atproto-org-desc 本會是一個非營利組織，需要您的支持。
+              .atproto-donation-section
+                h5.atproto-donation-title 以愛心碼捐助本會
+                p.atproto-donation-desc 愛心碼取為「9806」，是因為最初成立的契機，在於1998~2006年的「台北市自主學習（中學六年一貫）實驗計畫」，本會第一代會員多是計畫中的親師生及關注計畫的學者賢達，別具意義。
+                p.atproto-donation-desc 邀請並歡迎大家未來在開立電子發票的商家購物時，可主動向店員要求使用愛心碼，說出捐贈碼9806，或出示條碼即可。發票若中獎，將會自動捐入本會！
+                .atproto-donation-code
+                  span.atproto-code-label 愛心碼：
+                  span.atproto-code-value 9806
+                  .atproto-barcode-container
+                    img.atproto-barcode(src="../assets/9806.png", alt="自主學習捐贈碼 9806")
+
   </template>
   
   <script lang="ts">

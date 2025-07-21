@@ -1092,6 +1092,119 @@ body {
   line-height: 1.4;
 }
 
+/* 組織信息卡片 */
+.atproto-organization-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  margin-top: var(--space-8);
+  transition: var(--transition-fast);
+}
+
+.atproto-organization-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
+}
+
+.atproto-org-header {
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.atproto-org-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  line-height: 1.3;
+}
+
+.atproto-org-content {
+  text-align: center;
+}
+
+.atproto-org-desc {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+}
+
+.atproto-donation-section {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  margin-top: var(--space-6);
+}
+
+.atproto-donation-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-white);
+  margin-bottom: var(--space-4);
+  text-align: center;
+}
+
+.atproto-donation-desc {
+  font-size: 1rem;
+  color: var(--text-white);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+  opacity: 0.95;
+}
+
+.atproto-donation-code {
+  text-align: center;
+  margin-top: var(--space-6);
+  padding: var(--space-6);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 350px;
+}
+
+.atproto-code-label {
+  font-size: 1rem;
+  color: var(--text-white);
+  margin-right: var(--space-2);
+}
+
+.atproto-code-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.1em;
+}
+
+.atproto-barcode-container {
+  margin-top: var(--space-6);
+  text-align: center;
+  padding: var(--space-4);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.atproto-barcode {
+  max-width: 300px;
+  height: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: var(--transition-fast);
+}
+
+.atproto-barcode:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 /* 響應式調整 */
 @media (max-width: 768px) {
   .atproto-container {
@@ -1144,8 +1257,39 @@ body {
 
   .atproto-card,
   .atproto-feature-card,
-  .atproto-process-step {
+  .atproto-process-step,
+  .atproto-organization-card {
     padding: var(--space-6);
+  }
+
+  .atproto-barcode {
+    max-width: 200px;
+  }
+
+  .atproto-donation-code {
+    min-width: 280px;
+    padding: var(--space-4);
+  }
+
+  .atproto-org-title {
+    font-size: 1.25rem;
+  }
+
+  .atproto-donation-title {
+    font-size: 1.125rem;
+  }
+
+  .atproto-code-value {
+    font-size: 1.25rem;
+  }
+
+  .atproto-barcode {
+    max-width: 250px;
+  }
+
+  .atproto-donation-code {
+    min-width: 300px;
+    padding: var(--space-4);
   }
 }
 
