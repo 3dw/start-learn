@@ -260,7 +260,7 @@ div.hello
 
       //- 問答集部分
       section.atproto-section
-        h2.atproto-section-title 8. 問答集
+        h2.atproto-section-title 問答集
         .atproto-cta
           p.atproto-cta-text 請參考 ➡️
             router-link(to="faq") 自學問答集
@@ -277,6 +277,14 @@ div.hello
         h3.atproto-subsection-title 真人諮詢
         .atproto-cta
           p.atproto-cta-text 請用「您居住的縣市」 + 「非學校」當關鍵字，即可查詢到教育局的相關業務單位，通常都會有聯絡電話。
+
+        .atproto-divider
+
+        h3.atproto-subsection-title 公共意見徵集👥
+        .atproto-cta
+          p.atproto-cta-text 請上 ➡️
+            a(href="https://polis.tw/5azfwmdsb6", target="_blank", rel="noopener noreferrer") Polis 意見徵集討論區
+          p.atproto-cta-text 提出意見和對其他人的意見進行投票
 
         .atproto-divider
 
