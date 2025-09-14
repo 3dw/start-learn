@@ -186,6 +186,15 @@ input[type="text"]:placeholder-shown {
   color: #388E3C;
 }
 
+.result :deep(table)  {
+  border-collapse: collapse;
+}
+
+.result :deep(td), .result :deep(th) {
+  border: 1px solid black;
+}
+
+
 p {
   font-size: 18px;
   line-height: 1.4;

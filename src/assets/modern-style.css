@@ -274,6 +274,14 @@ body {
   overflow: hidden;
 }
 
+.modern-hero table  {
+  border-collapse: collapse;
+}
+
+.modern-hero table td, .modern-hero table th {
+  border: 1px solid white;
+}
+
 .modern-hero table td, .modern-hero table th, .modern-hero .ai-result {
   text-align: left;
 }
