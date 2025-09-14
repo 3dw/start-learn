@@ -274,6 +274,10 @@ body {
   overflow: hidden;
 }
 
+.modern-hero table td, .modern-hero table th, .modern-hero .ai-result {
+  text-align: left;
+}
+
 .modern-hero::before {
   content: '';
   position: absolute;

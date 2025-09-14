@@ -25,7 +25,7 @@ div.hello
           span.modern-loading
           |  載入中，請稍候...
         div(v-else-if="result !== ''")
-          p {{ parseResult(result) }}
+          div(v-html="parseResult(result)")
           .mt-6
             p 您覺得這個回答怎麼樣呢？
             .flex.items-center.justify-center.gap-md.mt-4
@@ -320,8 +320,9 @@ div.hello
   </template>
   
   <script lang="ts">
-  import axios from 'axios';
-  import { defineComponent } from 'vue';
+import axios from 'axios';
+import { defineComponent } from 'vue';
+import { marked } from 'marked';
   
   export default defineComponent({
     name: 'HelloWorld',
@@ -355,7 +356,8 @@ div.hello
         if (result === '。') {
           return '請說得詳細一點';
         }
-        return result;
+        // 使用 marked 將 markdown 轉換為 HTML
+        return marked(result);
       },
       sendFeedback(feedback: string) {
         console.log(feedback);
@@ -557,5 +559,76 @@ div.hello
 .ui.divider {
   border-top: 1px solid var(--border-color) !important;
   margin: var(--space-8) 0 !important;
+}
+
+/* Markdown 樣式 */
+.ai-result :deep(h1),
+.ai-result :deep(h2),
+.ai-result :deep(h3),
+.ai-result :deep(h4),
+.ai-result :deep(h5),
+.ai-result :deep(h6) {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  color: white;
+}
+
+.ai-result :deep(p) {
+  margin-bottom: 0.5em;
+  color: white;
+}
+
+.ai-result :deep(ul),
+.ai-result :deep(ol) {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+.ai-result :deep(li) {
+  margin-bottom: 0.25em;
+  color: white;
+}
+
+.ai-result :deep(strong) {
+  font-weight: bold;
+  color: white;
+}
+
+.ai-result :deep(em) {
+  font-style: italic;
+  color: white;
+}
+
+.ai-result :deep(code) {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  color: white;
+}
+
+.ai-result :deep(pre) {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 1em;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 0.5em 0;
+}
+
+.ai-result :deep(blockquote) {
+  border-left: 4px solid rgba(255, 255, 255, 0.5);
+  margin: 0.5em 0;
+  padding-left: 1em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ai-result :deep(a) {
+  color: #81C784;
+  text-decoration: underline;
+}
+
+.ai-result :deep(a:hover) {
+  color: #4CAF50;
 }
 </style>

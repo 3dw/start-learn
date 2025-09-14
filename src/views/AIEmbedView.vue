@@ -20,7 +20,7 @@
     .result
       p(v-if="result === '' && message !== '' && isLoading") 載入中，請稍候...
       div(v-else-if="result !== ''")
-        p {{ parseResult(result) }}
+        div(v-html="parseResult(result)")
         br
         br
         p 您覺得這個回答怎麼樣呢？
@@ -36,6 +36,7 @@
 <script lang="ts">
 import axios from 'axios';
 import { defineComponent } from 'vue';
+import { marked } from 'marked';
 
 export default defineComponent({
   name: 'AIEmbedView',
@@ -69,7 +70,8 @@ export default defineComponent({
       if (result === '。') {
         return '請說得詳細一點';
       }
-      return result;
+      // 使用 marked 將 markdown 轉換為 HTML
+      return marked(result);
     },
     sendFeedback(feedback: string) {
       console.log(feedback);
@@ -117,6 +119,71 @@ input[type="text"]:placeholder-shown {
   line-height: 1.4;
   text-align: left;
   white-space: pre-wrap;
+}
+
+/* Markdown 樣式 */
+.result :deep(h1),
+.result :deep(h2),
+.result :deep(h3),
+.result :deep(h4),
+.result :deep(h5),
+.result :deep(h6) {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.result :deep(p) {
+  margin-bottom: 0.5em;
+}
+
+.result :deep(ul),
+.result :deep(ol) {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+.result :deep(li) {
+  margin-bottom: 0.25em;
+}
+
+.result :deep(strong) {
+  font-weight: bold;
+}
+
+.result :deep(em) {
+  font-style: italic;
+}
+
+.result :deep(code) {
+  background-color: #f5f5f5;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+}
+
+.result :deep(pre) {
+  background-color: #f5f5f5;
+  padding: 1em;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 0.5em 0;
+}
+
+.result :deep(blockquote) {
+  border-left: 4px solid #ddd;
+  margin: 0.5em 0;
+  padding-left: 1em;
+  color: #666;
+}
+
+.result :deep(a) {
+  color: #4CAF50;
+  text-decoration: underline;
+}
+
+.result :deep(a:hover) {
+  color: #388E3C;
 }
 
 p {
