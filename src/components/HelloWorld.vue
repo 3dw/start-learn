@@ -314,6 +314,7 @@ div.hello
               h4.atproto-org-title 本站由非營利組織自主學習促進會提供
             .atproto-org-content
               p.atproto-org-desc 本會是一個非營利組織，需要您的支持。
+                a(href="https://p.ecpay.com.tw/2B9237F", target="_blank", rel="noopener noreferrer") 捐款請點選這個連結
               .atproto-donation-section
                 h5.atproto-donation-title 以愛心碼捐助本會
                 p.atproto-donation-desc 愛心碼取為「9806」，是因為最初成立的契機，在於1998~2006年的「台北市自主學習（中學六年一貫）實驗計畫」，本會第一代會員多是計畫中的親師生及關注計畫的學者賢達，別具意義。
