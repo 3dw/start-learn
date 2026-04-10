@@ -125,10 +125,17 @@ div.hello
           
           .atproto-process-step
             .atproto-step-number 5
-            h4.atproto-step-title 延伸閱讀
+            h4.atproto-step-title 閱讀資源
             p.atproto-step-desc 更多申請相關資源
             .atproto-step-detail
               router-link(to="/senior") 「第一次申請高中自學就上手」工作坊記錄
+          
+          .atproto-process-step
+            .atproto-step-number 6
+            h4.atproto-step-title 影音資源
+            p.atproto-step-desc 完整流程與常見問題解答
+            .atproto-step-detail
+              a(href="https://drive.google.com/file/d/1oy9VjQdcCIppB7n2vdHNl-ljBkJPylO-/view", target="_blank", rel="noopener noreferrer") 非學校型態實驗教育解密工作坊1小時完整版(推薦)
 
       //- 自學種類部分
       section.atproto-section#types
