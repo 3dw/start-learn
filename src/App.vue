@@ -31,6 +31,30 @@ nav.ui.menu(v-if="!$route.path.startsWith('/embed')")
         :to="'/ans/' + index"
       ) {{ parse(item.q) }}
 
+.news-carousel(
+  v-if="!$route.path.startsWith('/embed') && news.length",
+  @mouseenter="pauseNewsRotation",
+  @mouseleave="startNewsRotation"
+)
+  transition(name="news-fade", mode="out-in")
+    .news-slide(v-if="currentNews", :key="newsSlideKey(currentNews)")
+      template(v-if="currentNews.type === 'api'")
+        a(
+          :href="currentNews.url",
+          :title="currentNews.description",
+          target="_blank",
+          rel="noopener noreferrer"
+        ) {{ formatApiNews(currentNews) }}
+      template(v-else)
+        a(
+          v-if="currentNews.h",
+          :href="currentNews.h",
+          target="_blank",
+          rel="noopener noreferrer"
+        ) {{ formatLocalNews(currentNews) }}
+        router-link(v-else-if="currentNews.r", :to="currentNews.r") {{ formatLocalNews(currentNews) }}
+        span(v-else) {{ formatLocalNews(currentNews) }}
+
 router-view(:faqs="faqs")
 ad.fat-only(v-if="!$route.path.startsWith('/embed')")
 </template>
@@ -40,6 +64,28 @@ import Ad from './components/Ad-Be.vue'
 import { defineComponent } from 'vue'
 import axios from 'axios'
 
+const NEWS_API = 'https://members-backend.alearn13994229.workers.dev/news'
+const NEWS_AUTOPLAY_MS = 5000
+
+function parseNewsDateMs(dateStr) {
+  const s = String(dateStr ?? '').trim()
+  if (!s) return NaN
+  return new Date(s.includes('T') ? s : `${s}T00:00:00`).getTime()
+}
+
+function filterNewsToLastTwoYears(items) {
+  const cutoff = new Date()
+  cutoff.setFullYear(cutoff.getFullYear() - 2)
+  cutoff.setHours(0, 0, 0, 0)
+  const min = cutoff.getTime()
+  return items
+    .filter((it) => {
+      const t = parseNewsDateMs(it.date)
+      return !Number.isNaN(t) && t >= min
+    })
+    .sort((a, b) => parseNewsDateMs(b.date) - parseNewsDateMs(a.date))
+}
+
 export default defineComponent({
   name: 'AutoMap',
   components: {
@@ -48,9 +94,23 @@ export default defineComponent({
   data() {
     return {
       faqs: [],
+      news: [
+        {
+          type: 'local',
+          text: '支持自學，愛心碼捐9806',
+          h: 'https://www.alearn.org.tw'
+        }
+      ],
+      currentNewsIndex: 0,
+      newsTimer: null,
       marqueeStyle: {
         animationDuration: '60s'
       }
+    }
+  },
+  computed: {
+    currentNews() {
+      return this.news[this.currentNewsIndex] || null
     }
   },
   methods: {
@@ -64,10 +124,57 @@ export default defineComponent({
       } catch (error) {
         console.error('獲取FAQ資料失敗:', error)
       }
+    },
+    newsSlideKey(slide) {
+      return slide.type === 'api' ? slide.url : `local:${slide.text}`
+    },
+    formatApiNews(slide) {
+      return `[${slide.category}] ${slide.name} (${slide.date})`
+    },
+    formatLocalNews(slide) {
+      return slide.text || ''
+    },
+    startNewsRotation() {
+      this.pauseNewsRotation()
+      this.newsTimer = window.setInterval(() => {
+        if (this.news.length > 1) {
+          this.currentNewsIndex = (this.currentNewsIndex + 1) % this.news.length
+        }
+      }, NEWS_AUTOPLAY_MS)
+    },
+    pauseNewsRotation() {
+      if (this.newsTimer !== null) {
+        window.clearInterval(this.newsTimer)
+        this.newsTimer = null
+      }
+    },
+    async loadRemoteNews() {
+      try {
+        const response = await axios.get(NEWS_API)
+        const data = Array.isArray(response.data) ? response.data : []
+        const remoteNews = filterNewsToLastTwoYears(
+          data.map((item) => ({ ...item, type: 'api' }))
+        )
+        const nextNews = [
+          ...this.news.filter((slide) => slide.type !== 'api'),
+          ...remoteNews
+        ]
+        this.news = nextNews
+        if (this.currentNewsIndex >= nextNews.length) {
+          this.currentNewsIndex = 0
+        }
+      } catch (error) {
+        console.error('載入最新消息失敗:', error)
+      }
     }
   },
   mounted() {
     this.fetchFaqs()
+    this.loadRemoteNews()
+    this.startNewsRotation()
+  },
+  beforeUnmount() {
+    this.pauseNewsRotation()
   }
 })
 </script>
@@ -161,6 +268,40 @@ a, button, .clickable {
 
 .bold {
   font-weight: bolder;
+}
+
+.news-carousel {
+  height: 2em;
+  overflow: hidden;
+  padding: 0.3em;
+  background-color: #ffc107;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
+.news-carousel .news-slide {
+  overflow: hidden;
+}
+
+.news-carousel a,
+.news-carousel span {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+}
+
+.news-fade-enter-active,
+.news-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.news-fade-enter-from,
+.news-fade-leave-to {
+  opacity: 0;
 }
 
 </style>
