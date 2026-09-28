@@ -20,6 +20,7 @@ div.hello
           @keyup.enter="sendMessage"
         )
         button.modern-btn.modern-btn-secondary(@click="sendMessage") 送出
+      p.ai-disclaimer AI可能會犯錯，請查核重要資訊
       .ai-result(v-if="result !== '' || (message !== '' && isLoading)")
         p(v-if="result === '' && message !== '' && isLoading") 
           span.modern-loading

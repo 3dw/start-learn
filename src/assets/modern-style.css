@@ -335,6 +335,12 @@ body {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
 }
 
+.ai-disclaimer {
+  margin-top: var(--space-2);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .ai-result {
   background: rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
